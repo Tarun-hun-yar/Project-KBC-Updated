@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +11,10 @@
       theme: {
         extend: {
           screens: {
-            'vs': {'min': '375px', 'max': '424px'},
+            'vs': { 'min': '375px', 'max': '424px' },
             // => @media (min-width: 375px) and (max-width: 424px) { ... }
 
-            's': {'min': '425px', 'max': '639px'},
+            's': { 'min': '425px', 'max': '639px' },
             // => @media (min-width: 375px) and (max-width: 424px) { ... }
           },
           colors: {
@@ -69,128 +70,149 @@
 </head>
 
 <body class="bg-cover bg-center h-screen" style="background-image: url(Wallpaper.png);">
-<!-- <div id="optionsContainer">
+  <!-- <div id="optionsContainer">
   <button class="option">Option 1</button>
   <button class="option">Option 2</button>
   <button class="option">Option 3</button>
   <button class="option">1969</button>
 </div> -->
-<div id="firstDiv" class="h-screen flex items-center justify-center ">
-  <img src="1st picture.png" alt="">
-  <button id="startGameBtn" class="bg-blue-700 text-white rounded-md p-3 absolute top-[90%] ">START
-    GAME</button>
-  <button class="hidden bg-green-700 text-white rounded-md p-3 absolute top-[90%] " id="skipIntroBtn">SKIP
-    INTRO</button>
-</div>
+  <div id="firstDiv" class="h-screen flex items-center justify-center ">
+    <img src="1st picture.png" alt="">
 
- <!-- -----------Canvas Animation-------- -->
- <div id="lastDiv" class="hidden">
-  <div class="relative flex items-center justify-center  top-[55%]" id="7croreText">
-    <div id="text-container"
-      class="absolute top-[40vh] left-[25vw] lg:left-[45vw] xl:left-[35vw] text-center text-7xl lg:text-8xl xl:text-9xl text-green-600 font-bold animate-zoomInOut">
-      7 Crore
+    <button id="startGameBtn" class="bg-blue-700 text-white rounded-md p-3 absolute top-[90%] ">START
+      GAME</button>
+    <button class="hidden bg-green-700 text-white rounded-md p-3 absolute top-[90%] " id="skipIntroBtn">SKIP
+      INTRO</button>
+  </div>
+
+  <!-- -----------Canvas Animation-------- -->
+  <div id="lastDiv" class="hidden">
+    <div class="relative flex items-center justify-center  top-[55%]" id="7croreText">
+      <div id="text-container"
+        class="absolute top-[40vh] left-[25vw] lg:left-[45vw] xl:left-[35vw] text-center text-7xl lg:text-8xl xl:text-9xl text-green-600 font-bold animate-zoomInOut">
+        7 Crore
+      </div>
     </div>
+    <canvas id="Canvas" class="">
+    </canvas>
   </div>
-  <canvas id="Canvas" class="">
-  </canvas>
+<!-- -------------------------------------QUIT BOX----------------------------------------- -->
+<div id="quitBox"
+class="hidden z-20 w-60 lg:w-96 xl:w-96 bg-purple-700 custom-shape shadow-lg rounded-3xl border-4 border-yellow-500 absolute h-70 lg:h-96 xl:h-96 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+<div class="flex flex-col items-center justify-center">
+  <div class="mt-[25%]">
+    <h1 id="quitMessage" class="text-xl lg:text-4xl text-yellow-300 font-bold"></h1>
+  </div>
+  <button id="nextBtn2"
+    class="size-20 lg:mt-[25%] xl:mt-[25%] bottom-4 bg-blue-700 text-yellow-300 py-1 px-4 text-lg font-bold rounded">
+    Play Again
+  </button>
 </div>
-<!-- -----------------------------div's for 4 categories------------------------------------------------ -->
-<div class="hidden" id="mainDiv">
-  <!-- --------------------KBC Logo---------------------- -->
-  <div class="flex ml-6 md:ml-[35vw] lg:ml-[70vw] lg:mt-10 xl:mt-0 xl:ml-0 justify-start xl:justify-center">
-    <img src="KBC Logo.png" alt="KBC Logo"
-      class="lg:h-auto h-32 md:size-52 lg:w-96 mt-10 xl:mt-0 lg:mt-0 xl:h-[20rem]">
-  </div>
-  <!-- ---------------------Cureent Question Bar------------------------ -->
-  <div
-    class="absolute flex justify-center -mt-40 xl:-mt-80 w-52 xl:w-auto left-[50%] md:left-[70vw] lg:left-[50vw] xl:left-0 lg:ml-[85%] xl:ml-[85%] border-yellow-500 border-2 rounded-md px-2">
-    <div class="flex flex-col w-72 xl:w-auto">
-      <div class="flex justify-between text-white text-lg font-bold" id="7c">
-        <span>10 ◊</span>
-        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 7 Crore</span>
+</div>
+<!-- --- LIFELINE------- -->
+<div class=" absolute top-64 lg:top-[30rem] xl:top-72 " id="lifelines">
+  <div class="hidden" id="lifelinesHide">
+
+    <div class="flex items-center justify-center">
+      <!-- -------------flip the question lifeline----------------- -->
+      <div class="flex items-center justify-center size-14 bg-black rounded-full border-4 border-gray-300 cursor-pointer"
+        id="flipQuestionButton">
+        <div class="inline-block text-white text-3xl font-bold cursor-pointer p-2" id="flipQuestionButtonKaSpanTag">Q</div>
       </div>
-      <div class="flex justify-between text-white text-lg font-bold" id="1c">
-        <span>9 ◊</span>
-        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1 Crore</span>
-      </div>
-      <div class="flex justify-between text-white text-lg font-bold" id="25l">
-        <span>8 ◊</span>
-        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 25,00,000</span>
-      </div>
-      <div class="flex justify-between text-white text-lg font-bold" id="12l">
-        <span>7 ◊</span>
-        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 12,50,000</span>
-      </div>
-      <div class="flex justify-between text-white text-lg font-bold" id="6l">
-        <span>6 ◊</span>
-        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 6,40,000</span>
-      </div>
-      <div class="flex justify-between text-white text-lg font-bold" id="3l">
-        <span>5 ◊</span>
-        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3,20,000</span>
-      </div>
-      <div class="flex justify-between text-white text-lg font-bold" id="80k">
-        <span>4 ◊</span>
-        <span> &nbsp; &nbsp; &nbsp; &nbsp; 80,000</span>
-      </div>
-      <div class="flex justify-between text-white text-lg font-bold" id="40k">
-        <span>3 ◊</span>
-        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 40,000</span>
-      </div>
-      <div class="flex justify-between text-white text-lg font-bold" id="2k">
-        <span>2 ◊</span>
-        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2,000</span>
-      </div>
-      <div class="flex justify-between text-white text-lg font-bold bg-yellow-500 rounded-md" id="1k">
-        <span>1 ◊</span>
-        <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1,000</span>
+      <!-- -------------50-50 lifeline----------------- -->
+      <div class="flex items-center justify-center size-14 bg-black rounded-full border-4 border-grey-300 cursor-pointer"
+        id="fiftyFiftyButton">
+        <span class="text-white text-lg font-semibold cursor-pointer">50:50</span>
       </div>
     </div>
   </div>
-  <!-- ------------Instagram and Linkedin profiles---------------------- -->
-  <div class="flex justify-center items-center absolute size-28 top-40 lg:top-40 left-5 space-x-4">
-    <a href="https://www.instagram.com/tarun_hun_yar2/">
-      <img src="instagram icon.png" alt="linkedIn account">
-    </a>
-
-    <a href="https://www.linkedin.com/in/tarun-thakur-b4bb78274/">
-      <img src="linkedin icon.png" alt="instagram account">
-    </a>
-  </div>
-
-  <div id="questionContainer">
-    <span id="questionSpan"></span>
-    <ul id="optionsList"></ul>
-    <p id="result"></p>
-    <!-- <div id="lifelines">
-    <button id="fiftyFiftyButton">50-50</button>
-    <button id="flipQuestionButton">Flip-a-question</button>
-  </div> -->
-    <!-- --- LIFELINE------- -->
-    <div class=" absolute top-64 lg:top-[30rem] xl:top-72 " id="lifelines">
-      <div class="hidden" id="lifelinesHide">
-
-        <div class="flex items-center justify-center">
-          <!-- -------------flip the question lifeline----------------- -->
-          <div class="flex items-center justify-center size-14 bg-black rounded-full border-4 border-gray-300"
-            id="flipQuestionButton">
-            <span class="text-white text-3xl font-bold">Q</span>
-          </div>
-          <!-- -------------50-50 lifeline----------------- -->
-          <div class="flex items-center justify-center size-14 bg-black rounded-full border-4 border-grey-300"
-            id="fiftyFiftyButton">
-            <span class="text-white text-lg font-semibold">50:50</span>
-          </div>
+</div>
+<!-- ------------------------------ -->
+  <div class="hidden" id="mainDiv">
+    <!-- -----------QUIT BUTTON------------ -->
+    <button id="quitButton"
+      class="absolute top-[52vh] xl:top-[12rem] left-[75vw] xl:left-[10rem] px-6 py-2 bg-red-500 text-white font-semibold rounded-md shadow-md cursor-pointer text-xs lg:text-xl">
+      Quit
+    </button>
+    <!-- --------------------KBC Logo---------------------- -->
+    <div class="flex ml-6 md:ml-[35vw] lg:ml-[70vw] lg:mt-10 xl:mt-0 xl:ml-0 justify-start xl:justify-center">
+      <img src="KBC Logo.png" alt="KBC Logo"
+        class="lg:h-auto h-32 md:size-52 lg:w-96 mt-10 xl:mt-0 lg:mt-0 xl:h-[20rem]">
+    </div>
+    <!-- ---------------------Cureent Question Bar------------------------ -->
+    <div
+      class="absolute flex justify-center -mt-40 xl:-mt-80 w-52 xl:w-auto left-[50%] md:left-[70vw] lg:left-[50vw] xl:left-0 lg:ml-[85%] xl:ml-[85%] border-yellow-500 border-2 rounded-md px-2">
+      <div class="flex flex-col w-72 xl:w-auto">
+        <div class="flex justify-between text-white text-lg font-bold" id="7c">
+          <span>10 ◊</span>
+          <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 7 Crore</span>
+        </div>
+        <div class="flex justify-between text-white text-lg font-bold" id="1c">
+          <span>9 ◊</span>
+          <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1 Crore</span>
+        </div>
+        <div class="flex justify-between text-white text-lg font-bold" id="25l">
+          <span>8 ◊</span>
+          <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 25,00,000</span>
+        </div>
+        <div class="flex justify-between text-white text-lg font-bold" id="12l">
+          <span>7 ◊</span>
+          <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 12,50,000</span>
+        </div>
+        <div class="flex justify-between text-white text-lg font-bold" id="6l">
+          <span>6 ◊</span>
+          <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 6,40,000</span>
+        </div>
+        <div class="flex justify-between text-white text-lg font-bold" id="3l">
+          <span>5 ◊</span>
+          <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3,20,000</span>
+        </div>
+        <div class="flex justify-between text-white text-lg font-bold" id="80k">
+          <span>4 ◊</span>
+          <span> &nbsp; &nbsp; &nbsp; &nbsp; 80,000</span>
+        </div>
+        <div class="flex justify-between text-white text-lg font-bold" id="40k">
+          <span>3 ◊</span>
+          <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 40,000</span>
+        </div>
+        <div class="flex justify-between text-white text-lg font-bold" id="2k">
+          <span>2 ◊</span>
+          <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2,000</span>
+        </div>
+        <div class="flex justify-between text-white text-lg font-bold bg-yellow-500 rounded-md" id="1k">
+          <span>1 ◊</span>
+          <span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1,000</span>
         </div>
       </div>
     </div>
+    <!-- ------------Instagram and Linkedin profiles---------------------- -->
+    <div class="flex justify-center items-center absolute size-28 top-40 lg:top-40 left-5 space-x-4">
+      <a href="https://www.instagram.com/tarun_hun_yar2/">
+        <img src="instagram icon.png" alt="linkedIn account">
+      </a>
+
+      <a href="https://www.linkedin.com/in/tarun-thakur-b4bb78274/">
+        <img src="linkedin icon.png" alt="instagram account">
+      </a>
+    </div>
+
+    <div id="questionContainer">
+      <span id="questionSpan"></span>
+      <ul id="optionsList"></ul>
+      <p id="result"></p>
+
+    </div>
+    
+    
+   
     <!-- ----------------show options button------------------ -->
 
     <button id="showOptionsButton"
       class="absolute left-[30%] md:left-[40vw] lg:left-[79vw] xl:left-[45%] top-[39rem] lg:top-[57rem] xl:top-[93%] bg-green-500 p-3 font-bold rounded-md">Show
       Options</button>
     <!-- -------------------timer--------------------- -->
-    <div id="timer" class="absolute text-yellow-400 font-bold text-4xl top-[18.5rem] lg:top-[31rem] xl:top-[20rem] z-10 w-full flex items-center justify-center ">
+    <div id="timer"
+      class="absolute text-yellow-400 font-bold text-4xl top-[18.5rem] lg:top-[31rem] xl:top-[20rem] z-10 w-full flex items-center justify-center ">
       <h1 class="text-center">30</h1>
     </div>
     <!-- -----------------Timer Ended Boxes -->
@@ -220,8 +242,11 @@
         </div>
       </div>
     </div>
+    <div id="optionsContainer">
+
+    
     <!-- ---------option A container-------------------->
-    <div class="optionAContainer hidden">
+    <div class="optionAContainer option  hidden">
       <div class="flex justify-center items-center h-0 absolute top-[31rem] lg:top-[45rem] xl:top-[33rem]">
         <div
           class="relative w-[95%] s:w-[50vw] md:w-[50vw] lg:w-[85vw] xl:w-[50vw] h-[80px] lg:h-[100px] xl:h-[100px] border-4 border-yellow-500 rounded-full shadow-lg bg-gradient-to-b from-purple-900 to-indigo-700">
@@ -233,7 +258,7 @@
       </div>
     </div>
     <!-- ---------option B container-------------------->
-    <div class="optionBContainer hidden">
+    <div class="optionBContainer option  hidden">
       <div
         class="flex justify-center items-center h-0 absolute top-[31rem] lg:top-[45rem] xl:top-[33rem] left-[12rem] s:left-[50vw] md:left-[50vw] lg:left-[85%] xl:left-[50%]">
         <div
@@ -246,7 +271,7 @@
       </div>
     </div>
     <!-- ---------option C container-------------------->
-    <div class="optionCContainer hidden">
+    <div class="optionCContainer option  hidden">
       <div class="flex justify-center items-center h-0 absolute top-[36.5rem] lg:top-[53rem] xl:top-[40rem]">
         <div
           class="relative w-[12rem] md:w-[50vw] lg:w-[85vw] xl:w-[50vw] h-[80px] lg:h-[100px] xl:h-[100px] border-4 border-yellow-500 rounded-full shadow-lg bg-gradient-to-b from-purple-900 to-indigo-700">
@@ -258,7 +283,7 @@
       </div>
     </div>
     <!-- ---------option D container-------------------->
-    <div class="optionDContainer hidden">
+    <div class="optionDContainer option  hidden">
       <div
         class="flex justify-center items-center h-0 absolute top-[36.5rem] lg:top-[53rem] xl:top-[40rem] left-[12rem] s:left-[50vw] md:left-[50vw] lg:left-[85%] xl:left-[50%]">
         <div
@@ -270,19 +295,20 @@
       </div>
     </div>
     <!-- -------------------------------------- -->
+     </div>
     <!-- <div id="nextQuestionDiv">Correct Answer. Next Question</div> -->
     <div id="nextQuestionDiv"
-    class="z-20 w-80 lg:w-96 xl:w-96 bg-purple-700 custom-shape shadow-lg rounded-3xl border-4 border-yellow-500 h-52 lg:h-96 xl:h-96 flex flex-col items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden">
-    <div class="flex flex-col items-center justify-center">
-      <div class="mt-[25%]">
-        <h1 class="text-4xl text-green-700 font-bold">Correct Answer</h1>
+      class="z-20 w-80 lg:w-96 xl:w-96 bg-purple-700 custom-shape shadow-lg rounded-3xl border-4 border-yellow-500 h-52 lg:h-96 xl:h-96 flex flex-col items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden">
+      <div class="flex flex-col items-center justify-center">
+        <div class="mt-[25%]">
+          <h1 class="text-4xl text-green-700 font-bold">Correct Answer</h1>
+        </div>
+        <button id="nextBtn1"
+          class="size-20 lg:mt-[25%] xl:mt-[25%] bottom-4 bg-blue-700 text-yellow-300 py-1 px-4 text-lg font-bold rounded">
+          NEXT
+        </button>
       </div>
-      <button id="nextBtn1"
-        class="size-20 lg:mt-[25%] xl:mt-[25%] bottom-4 bg-blue-700 text-yellow-300 py-1 px-4 text-lg font-bold rounded">
-        NEXT
-      </button>
     </div>
-  </div>
     <!-- -----------all audio files------------------ -->
     <audio src="starting audio.mp3" id="progress-audio"></audio>
     <audio src="30 second tic tic kbc clock(MP3_160K).mp3" id="ticticAudio"></audio>
@@ -308,889 +334,964 @@
 
     <!-- <div id="retryDiv">Wrong Answer. Retry</div> -->
     <div id="retryDiv"
-    class="z-20 w-80 lg:w-96 xl:w-96 bg-purple-700 custom-shape shadow-lg rounded-3xl border-4 border-yellow-500 h-52 lg:h-96 xl:h-96 flex flex-col items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden">
-    <div class="flex flex-col items-center justify-center">
-      <div class="mt-[25%]">
-        <h1 class="text-4xl text-red-700 font-bold">Wrong Answer</h1>
+      class="z-20 w-80 lg:w-96 xl:w-96 bg-purple-700 custom-shape shadow-lg rounded-3xl border-4 border-yellow-500 h-52 lg:h-96 xl:h-96 flex flex-col items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden">
+      <div class="flex flex-col items-center justify-center">
+        <div class="mt-[25%]">
+          <h1 class="text-4xl text-red-700 font-bold">Wrong Answer</h1>
+        </div>
+        <button id="retryBtn1"
+          class="size-20 lg:mt-[25%] xl:mt-[25%] bottom-4 bg-blue-700 text-yellow-300 py-1 px-4 text-lg font-bold rounded">
+          RETRY
+        </button>
       </div>
-      <button id="retryBtn1"
-        class="size-20 lg:mt-[25%] xl:mt-[25%] bottom-4 bg-blue-700 text-yellow-300 py-1 px-4 text-lg font-bold rounded">
-        RETRY
-      </button>
     </div>
   </div>
   </div>
-</div>
-<script>
-  
-  // ---------------------------------------
-  let currentQuestionNumber = 0;
-  const totalQuestions = 9;
-  let currentQuestionSet = 1; // Initialize it with the first question set
-  //audio functions
-  // ----------------introduction audio start and stop function---------------
-  const introSound = document.getElementById('progress-audio');
-  function startIntroSoundAudio() {
-    introSound.play();
-  }
+  <script>
+    let quitVariable;
+    // Get the elements
+    let element1k = document.getElementById('1k');
+    let element2k = document.getElementById('2k');
+    let element40k = document.getElementById('40k');
+    let element80k = document.getElementById('80k');
+    let element3l = document.getElementById('3l');
+    let element6l = document.getElementById('6l');
+    let element12l = document.getElementById('12l');
+    let element25l = document.getElementById('25l');
+    let element1c = document.getElementById('1c');
+    let element7c = document.getElementById('7c');
 
-  function stopIntroSoundAudio() {
-    introSound.pause();
-  }
-  // ---------------------1st answer audio start and stop function----------------
-  const onekAnswerAudio = document.getElementById('1kAnswerAudio');
-  function startFirstAnswerAudio() {
-    onekAnswerAudio.play();
-  }
-
-  // Function to stop audio
-  function stopFirstAnswerAudio() {
-    onekAnswerAudio.pause();
-    onekAnswerAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------2nd answer audio start and stop function-----------------
-  const fivekAnswerAudio = document.getElementById('2kAnswerAudio');
-  function startSecondAnswerAudio() {
-    fivekAnswerAudio.play();
-  }
-
-  // Function to stop audio
-  function stopSecondAnswerAudio() {
-    fivekAnswerAudio.pause();
-    fivekAnswerAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------3rd question audio start and stop function-----------------
-  const fourtykQuestionAudio = document.getElementById('40kQuestionAudio');
-  function startThirdQuestionAudio() {
-    fourtykQuestionAudio.play();
-  }
-
-  // Function to stop audio
-  function stopThirdQuestionAudio() {
-    fourtykQuestionAudio.pause();
-    fourtykQuestionAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------3rd answer audio start and stop function-----------------
-  const fourtykAnswerAudio = document.getElementById('40kAnswerAudio');
-  function startThirdAnswerAudio() {
-    fourtykAnswerAudio.play();
-  }
-
-  // Function to stop audio
-  function stopThirdAnswerAudio() {
-    fourtykAnswerAudio.pause();
-    fourtykAnswerAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------4th question audio start and stop function-----------------
-  const eightykQuestionAudio = document.getElementById('80kQuestionAudio');
-  function startFourthQuestionAudio() {
-    eightykQuestionAudio.play();
-  }
-
-  // Function to stop audio
-  function stopFourthQuestionAudio() {
-    eightykQuestionAudio.pause();
-    eightykQuestionAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------4th answer audio start and stop function-----------------
-  const eightykAnswerAudio = document.getElementById('80kAnswerAudio');
-  function startFourthAnswerAudio() {
-    eightykAnswerAudio.play();
-  }
-
-  // Function to stop audio
-  function stopFourthAnswerAudio() {
-    eightykAnswerAudio.pause();
-    eightykAnswerAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------5th question audio start and stop function-----------------
-  const threeLakhQuestionAudio = document.getElementById('3lakhQuestionAudio');
-  function startFifthQuestionAudio() {
-    threeLakhQuestionAudio.play();
-  }
-
-  // Function to stop audio
-  function stopFifthQuestionAudio() {
-    threeLakhQuestionAudio.pause();
-    threeLakhQuestionAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------5th answer audio start and stop function-----------------
-  const threeLakhAnswerAudio = document.getElementById('3lakhAnswerAudio');
-  function startFifthAnswerAudio() {
-    threeLakhAnswerAudio.play();
-  }
-
-  // Function to stop audio
-  function stopFifthAnswerAudio() {
-    threeLakhAnswerAudio.pause();
-    threeLakhAnswerAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------6th question audio start and stop function-----------------
-  const sixLakhQuestionAudio = document.getElementById('6lakhQuestionAudio');
-  function startSixthQuestionAudio() {
-    sixLakhQuestionAudio.play();
-  }
-
-  // Function to stop audio
-  function stopSixthQuestionAudio() {
-    sixLakhQuestionAudio.pause();
-    sixLakhQuestionAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------6th answer audio start and stop function-----------------
-  const sixLakhAnswerAudio = document.getElementById('6lakhAnswerAudio');
-  function startSixthAnswerAudio() {
-    sixLakhAnswerAudio.play();
-  }
-
-  // Function to stop audio
-  function stopSixthAnswerAudio() {
-    sixLakhAnswerAudio.pause();
-    sixLakhAnswerAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------7th question audio start and stop function-----------------
-  const twelveLakhQuestionAudio = document.getElementById('12lakhQuestionAudio');
-  function startSeventhQuestionAudio() {
-    twelveLakhQuestionAudio.play();
-  }
-
-  // Function to stop audio
-  function stopSeventhQuestionAudio() {
-    twelveLakhQuestionAudio.pause();
-    twelveLakhQuestionAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------7th answer audio start and stop function-----------------
-  const twelveLakhAnswerAudio = document.getElementById('12lakhAnswerAudio');
-  function startSeventhAnswerAudio() {
-    twelveLakhAnswerAudio.play();
-  }
-
-  // Function to stop audio
-  function stopSeventhAnswerAudio() {
-    twelveLakhAnswerAudio.pause();
-    twelveLakhAnswerAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------8th question audio start and stop function-----------------
-  const twentyfiveLakhQuestionAudio = document.getElementById('25lakhQuestionAudio');
-  function startEightQuestionAudio() {
-    twentyfiveLakhQuestionAudio.play();
-  }
-
-  // Function to stop audio
-  function stopEightQuestionAudio() {
-    twentyfiveLakhQuestionAudio.pause();
-    twentyfiveLakhQuestionAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------8th answer audio start and stop function-----------------
-  const twentyfiveLakhAnswerAudio = document.getElementById('25lakhAnswerAudio');
-  function startEightAnswerAudio() {
-    twentyfiveLakhAnswerAudio.play();
-  }
-
-  // Function to stop audio
-  function stopEightAnswerAudio() {
-    twentyfiveLakhAnswerAudio.pause();
-    twentyfiveLakhAnswerAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------9th question audio start and stop function-----------------
-  const oneCroreQuestionAudio = document.getElementById('1croreQuestionAudio');
-  function startNinthQuestionAudio() {
-    oneCroreQuestionAudio.play();
-  }
-
-  // Function to stop audio
-  function stopNinthQuestionAudio() {
-    oneCroreQuestionAudio.pause();
-    oneCroreQuestionAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------9th answer audio start and stop function-----------------
-  const oneCroreAnswerAudio = document.getElementById('1croreAnswerAudio');
-  function startNinthAnswerAudio() {
-    oneCroreAnswerAudio.play();
-  }
-
-  // Function to stop audio
-  function stopNinthAnswerAudio() {
-    oneCroreAnswerAudio.pause();
-    oneCroreAnswerAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ---------------------10th answer audio start and stop function-----------------
-  const sevenCroreAnswerAudio = document.getElementById('7croreAnswerAudio');
-  function startTenthAnswerAudio() {
-    sevenCroreAnswerAudio.play();
-  }
-
-  // Function to stop audio
-  function stopTenthAnswerAudio() {
-    sevenCroreAnswerAudio.pause();
-    sevenCroreAnswerAudio.currentTime = 0; // Reset audio to the start
-  }
-  // ------------------wrong answer audio logic for all wrong options----------------
-  const wrongAnswerAudio = document.getElementById("wrongAnswerAudio");
-  function startWrongAnswerAudio() {
-    wrongAnswerAudio.play();
-  }
-
-  function stopWrongAnswerAudio() {
-    wrongAnswerAudio.pause();
-    wrongAnswerAudio.currentTime = 0;
-  }
-
-  // Array of question sets
-  const questionSets = [
-    [
-      {
-        question: "Set 1 - Who was the first Prime Minister of India?",
-        options: ["Mahatma Gandhi", "Sardar Vallabhbhai Patel", "Dr. Rajendra Prasad", "Jawaharlal Nehru"],
-        correctAnswer: "Jawaharlal Nehru"
-      },
-      {
-        question: "'Tum mujhe khoon do main tumhen aazadi dunga' was said by-",
-        options: ["Bhagat Singh", "Mahatma Gandhi", "Netaji Subhash Chandra Bose", "Sardar Vallabhbhai Patel"],
-        correctAnswer: "Netaji Subhash Chandra Bose"
-      },
-      {
-        question: "Set 1 - What is the largest planet in our solar system?",
-        options: ["Earth", "Jupiter", "Mars", "Venus"],
-        correctAnswer: "Jupiter"
-      },
-      {
-        question: "Set 1 - Who wrote 'गुनाहों का देवता'?",
-        options: ["Dharamvir Bharati", "Prem Chand", "Ernest Hemingway", "Jane Austen"],
-        correctAnswer: "Dharamvir Bharati"
-      },
-      {
-        question: "Set 1 - What year did the first man walk on the moon?",
-        options: ["1969", "1959", "1979", "1989"],
-        correctAnswer: "1969"
-      },
-      {
-        question: "Set 1 - What is the chemical symbol for gold?",
-        options: ["Fe", "Ag", "Pb", "Au"],
-        correctAnswer: "Au"
-      },
-      {
-        question: "Set 1 - Who is known as the Father of Computers?",
-        options: ["Alan Turing", "Charles Babbage", "John von Neumann", "Ada Lovelace"],
-        correctAnswer: "Charles Babbage"
-      },
-      {
-        question: "Set 1 - What is the boiling point of water in Celsius?",
-        options: ["100", "90", "80", "110"],
-        correctAnswer: "100"
-      },
-      {
-        question: "Set 1 - Who painted the Mona Lisa?",
-        options: ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Claude Monet"],
-        correctAnswer: "Leonardo da Vinci"
-      },
-      {
-        question: "Set 1 - What is the smallest country in the world?",
-        options: ["Singapore", "Monaco", "Vatican City", "Liechtenstein"],
-        correctAnswer: "Vatican City"
-      }
-    ],
-    // Repeat similarly for 9 more sets, with unique questions in each
-    [
-      {
-        question: "Set 2 - What is the smallest prime number?",
-        options: ["0", "1", "2", "3"],
-        correctAnswer: "2"
-      },
-      {
-        question: "Set 2 - Who painted the Mona Lisa?",
-        options: ["Vincent van Gogh", "Pablo Picasso", "Michelangelo", "Leonardo da Vinci"],
-        correctAnswer: "Leonardo da Vinci"
-      },
-      {
-        question: "Set 2 - What is the chemical symbol for water?",
-        options: ["H", "H2O", "O", "CO2"],
-        correctAnswer: "H2O"
-      },
-      {
-        question: "Set 2 - Which planet is known as the Red Planet?",
-        options: ["Earth", "Mars", "Jupiter", "Saturn"],
-        correctAnswer: "Mars"
-      },
-      {
-        question: "Set 2 - What is the hardest natural substance on Earth?",
-        options: ["Gold", "Iron", "Diamond", "Quartz"],
-        correctAnswer: "Diamond"
-      },
-      {
-        question: "Set 2 - How many legs does a spider have?",
-        options: ["6", "8", "10", "12"],
-        correctAnswer: "8"
-      },
-      {
-        question: "Set 2 - What is the capital city of Australia?",
-        options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
-        correctAnswer: "Canberra"
-      },
-      {
-        question: "Set 2 - Who discovered gravity by watching an apple fall?",
-        options: ["Galileo Galilei", "Isaac Newton", "Albert Einstein", "Nikola Tesla"],
-        correctAnswer: "Isaac Newton"
-      },
-      {
-        question: "Set 2 - What is the longest river in the world?",
-        options: ["Nile River", "Amazon River", "Mississippi River", "Yangtze River"],
-        correctAnswer: "Nile River"
-      },
-      {
-        question: "Set 2 - Who is the author of Harry Potter series?",
-        options: ["J.R.R. Tolkien", "C.S. Lewis", "J.K. Rowling", "George R.R. Martin"],
-        correctAnswer: "J.K. Rowling"
-      }
-    ],
-    // ... Add 8 more sets with unique questions in each
-    [
-      {
-        question: "Set 3 - What year did the Titanic sink?",
-        options: ["1905", "1918", "1925", "1912"],
-        correctAnswer: "1912"
-      },
-      {
-        question: "Set 3 - Who developed the theory of relativity?",
-        options: ["Isaac Newton", "Galileo Galilei", "Stephen hawking", "Albert Einstein"],
-        correctAnswer: "Albert Einstein"
-      },
-      {
-        question: "Set 3 - What is the capital of Canada?",
-        options: ["Toronto", "Vancouver", "Ottawa", "Montreal"],
-        correctAnswer: "Ottawa"
-      },
-      {
-        question: "Set 3 - What element does 'O' represent on the periodic table?",
-        options: ["Oxygen", "Silver", "Carbon", "Gold"],
-        correctAnswer: "Oxygen"
-      },
-      {
-        question: "Set 3 - Who painted the ceiling of the Sistine Chapel?",
-        options: ["Tarun Thakur", "Vincent van Gogh", "Raphael", "Michelangelo"],
-        correctAnswer: "Michelangelo"
-      },
-      {
-        question: "Set 3 - What is the square root of 144?",
-        options: ["10", "11", "12", "13"],
-        correctAnswer: "12"
-      },
-      {
-        question: "Set 3 - Which country is known as the Land of the Rising Sun?",
-        options: ["China", "Japan", "South Korea", "Thailand"],
-        correctAnswer: "Japan"
-      },
-      {
-        question: "Set 3 - What is the currency of South Africa?",
-        options: ["Peso", "Rand", "Rupees", "Euro"],
-        correctAnswer: "Rand"
-      },
-      {
-        question: "Set 3 - What is the most widely spoken language in the world?",
-        options: ["Spanish", "English", "Hindi", "Mandarin"],
-        correctAnswer: "Mandarin"
-      },
-      {
-        question: "Set 3 - Who is the Greek god of the sea?",
-        options: ["Poseidon", "Zeus", "Hades", "Apollo"],
-        correctAnswer: "Poseidon"
-      }
-    ],
-    [
-      {
-        question: "Set 4 - What is the main ingredient in Chai?",
-        options: ["Chai Patti", "Coffee", "Onion", "Elaichi"],
-        correctAnswer: "Chai Patti"
-      },
-      {
-        question: "Set 4 - What is the capital of India?",
-        options: ["Bhopal", "Kolkata", "New Delhi", "Mumbai"],
-        correctAnswer: "New Delhi"
-      },
-      {
-        question: "Set 4 - Which is the highest mountain in India?",
-        options: ["Mt. K12", "Mt. Nanda Devi", "Mt. Kailash", "Mt. Kangchenjunga"],
-        correctAnswer: "Mt. Kangchenjunga"
-      },
-      {
-        question: "Set 4 - Who wrote 'Half-Girlfriend'?",
-        options: ["Arundhati Roy", "Amrita Pritam", "Chetan Bhagat", "Jane Austen"],
-        correctAnswer: "Chetan Bhagat"
-      },
-      {
-        question: "Set 4 - What is the largest bone in the human body?",
-        options: ["Skull", "Rib", "Humerus", "Femur"],
-        correctAnswer: "Femur"
-      },
-      {
-        question: "Set 4 - Who was the first President of India",
-        options: ["Dr. Rajendra Prasad", "Sarvepalli Radhakrishnan", "A. P. J. Abdul Kalam", "Droupadi Murmu"],
-        correctAnswer: "Dr. Rajendra Prasad"
-      },
-      {
-        question: "Set 4 - who invented USB cable?",
-        options: ["Nicola Tesla", "Elon Musk", "Ajay Bhatt", "Salman Khan"],
-        correctAnswer: "Ajay Bhatt"
-      },
-      {
-        question: "Set 4 - What is the most common gas in the Earth's atmosphere?",
-        options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"],
-        correctAnswer: "Nitrogen"
-      },
-      {
-        question: "Set 4 - What does DNA stand for?",
-        options: ["Deoxyribose acid", "Ribonucleic acid", "Deoxyribonucleic acid", "Nucleic acid"],
-        correctAnswer: "Deoxyribonucleic acid"
-      },
-      {
-        question: "Set 4 - Who was the first man to step on the moon?",
-        options: ["Buzz Aldrin", "Neil Armstrong", "Yuri Gagarin", "Michael Collins"],
-        correctAnswer: "Neil Armstrong"
-      }
-    ],
-    [
-      {
-        question: "Set 5 - Who formulated the laws of motion?",
-        options: ["Albert Einstein", "Galileo Galilei", "Isaac Newton", "James Clerk Maxwell"],
-        correctAnswer: "Isaac Newton"
-      },
-      {
-        question: "Set 5 - What is the largest desert in the world?",
-        options: ["Sahara Desert", "Arabian Desert", "Gobi Desert", "Antarctic Desert"],
-        correctAnswer: "Antarctic Desert"
-      },
-      {
-        question: "Set 5 - Who was the captain of the Indian cricket team when they won the ICC Cricket World Cup in 2011?",
-        options: ["Virat Kohli", "Sourav Ganguly", "MS Dhoni", "Anil Kumble"],
-        correctAnswer: "MS Dhoni"
-      },
-      {
-        question: "Set 5 - Who scored the first double century in One Day Internationals (ODIs) for India?",
-        options: [" Sachin Tendulkar", "Rohit Sharma", "Virender Sehwag", "MS Dhoni"],
-        correctAnswer: " Sachin Tendulkar"
-      },
-      {
-        question: "Set 5 - Which cricketer is known as the 'God of Cricket'?",
-        options: ["Sunil Gavaskar", "Rahul Dravid", "Virat Kohli", "Sachin Tendulkar"],
-        correctAnswer: "Sachin Tendulkar"
-      },
-      {
-        question: "Set 5 - Who wrote गोदान [Godaan]?",
-        options: ["Tulsidaas", "Munshi Premchand", "Ravidaas", "Veerdaas"],
-        correctAnswer: "Munshi Premchand"
-      },
-      {
-        question: "Set 5 - In which year did India win their first ICC T20 World Cup?",
-        options: ["2007", "2009", "2011", "2013"],
-        correctAnswer: "2007"
-      },
-      {
-        question: "Set 5 - Which is the largest state in India by area?",
-        options: ["Uttar Pradesh", "Maharashtra", "Rajasthan", "Madhya Pradesh"],
-        correctAnswer: "Rajasthan"
-      },
-      {
-        question: "Set 5 - Who painted 'Starry Night'?",
-        options: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
-        correctAnswer: "Vincent van Gogh"
-      },
-      {
-        question: "Set 5 - What is the largest country in the world?",
-        options: ["India", "Canada", "Russia", "China"],
-        correctAnswer: "Russia"
-      }
-    ],
-    [
-      {
-        question: "Set 6 - Who is credited with the invention of the concept of zero in mathematics?",
-        options: ["Aryabhata", "Bhaskara I", "Brahmagupta", "Srinivasa Ramanujan"],
-        correctAnswer: "Brahmagupta"
-      },
-      {
-        question: "Set 6 -Which ancient Indian text is known for its early description of the game of chess?",
-        options: ["Arthashastra", "Mahabharata", "Ramayana", "Manasollasa"],
-        correctAnswer: "Manasollasa"
-      },
-      {
-        question: "Set 6 - Who invented the Raman Effect, which earned him a Nobel Prize in Physics?",
-        options: ["C.V. Raman", "Satyendra Nath Bose", "Homi J. Bhabha", "Vikram Sarabhai"],
-        correctAnswer: "C.V. Raman"
-      },
-      {
-        question: "Set 6 - Who was the first woman to win a Nobel Prize?",
-        options: ["Marie Curie", "Rosalind Franklin", "Ada Lovelace", "Dorothy Hodgkin"],
-        correctAnswer: "Marie Curie"
-      },
-      {
-        question: "Set 6 - Who is considered the father of India's space program and founded the ISRO?",
-        options: ["A.P.J. Abdul Kalam", "Vikram Sarabhai", "Satish Dhawan", "Homi J. Bhabha"],
-        correctAnswer: "Vikram Sarabhai"
-      },
-      {
-        question: "Set 6 - Who is credited with the development of the 'Shampoo', derived from the Hindi word 'Champu', meaning to massage?",
-        options: ["Indian barber", "Indian washermen", "Indian ayurvedic practitioners", "Indian spice traders"],
-        correctAnswer: "Indian ayurvedic practitioners"
-      },
-      {
-        question: "Set 6 - What is the heaviest naturally occurring element?",
-        options: ["Uranium", "Lead", "Gold", "Platinum"],
-        correctAnswer: "Uranium"
-      },
-      {
-        question: "Set 6 - Which ancient Indian surgeon is known for his work 'Sushruta Samhita' that describes surgical techniques including plastic surgery?",
-        options: ["Sushruta", "Charaka", "Dhanvantari", "Vagbhata"],
-        correctAnswer: "Sushruta"
-      },
-      {
-        question: "Set 6 - Which Indian actor is known as the 'Tragedy King' of Bollywood?",
-        options: ["Raj Kapoor", "Dilip Kumar", "Dev Anand", "Guru Dutt"],
-        correctAnswer: "Dilip Kumar"
-      },
-      {
-        question: "Set 6 - Which Bollywood movie was India's official entry to the Oscars for Best Foreign Language Film in 2001 and won an Academy Award for Best Original Score?",
-        options: ["Lagaan", "Dil Chahta Hai", "Kabhi Khushi Kabhie Gham", "Gadar: Ek Prem Katha"],
-        correctAnswer: "Lagaan"
-      }
-    ],
-    [
-      {
-        question: "Set 7 - Which movie, directed by Ramesh Sippy, is considered one of the greatest and most successful Indian films of all time?",
-        options: ["Deewar", "Sholay", "Don", "Anand"],
-        correctAnswer: "Sholay"
-      },
-      {
-        question: "Set 7 - Who composed the music for the film 'Slumdog Millionaire', which won the Oscar for Best Original Score?",
-        options: ["Shankar-Ehsaan-Loy", "Anu Malik", "Pritam", "A.R. Rahman"],
-        correctAnswer: "A.R. Rahman"
-      },
-      {
-        question: "Set 7 - Who proposed the heliocentric theory of the universe?",
-        options: ["Ptolemy", "Aristotle", "Nicolaus Copernicus", "Galileo Galilei"],
-        correctAnswer: "Nicolaus Copernicus"
-      },
-      {
-        question: "Set 7 - What is the capital city of Bhutan?",
-        options: ["Thimphu", "Kathmandu", "Lhasa", "Colombo"],
-        correctAnswer: "Thimphu"
-      },
-      {
-        question: "Set 7 - Who developed the polio vaccine?",
-        options: ["Alexander Fleming", "Jonas Salk", "Louis Pasteur", "Robert Koch"],
-        correctAnswer: "Jonas Salk"
-      },
-      {
-        question: "Set 7 - What is the most abundant element in the universe?",
-        options: ["Oxygen", "Carbon", "Helium", "Hydrogen"],
-        correctAnswer: "Hydrogen"
-      },
-      {
-        question: "Set 7 - Which song from the movie 'RRR' won the Golden Globe Award for Best Original Song in 2023?",
-        options: ["Naatu Naatu", "Dosti", "Komuram Bheemudo", "Janani"],
-        correctAnswer: "Naatu Naatu"
-      },
-      {
-        question: "Set 7 - Which Indian singer is known as the 'Nightingale of India'?",
-        options: ["Shreya Ghoshal", "Alka Yagnik", "Lata Mangeshkar", "Asha Bhosle"],
-        correctAnswer: "Lata Mangeshkar"
-      },
-      {
-        question: "Set 7 - Who sang the famous song 'Chaiyya Chaiyya' from the movie 'Dil Se'?",
-        options: ["Sonu Nigam", "Udit Narayan", "Sukhwinder Singh", "Arijit Singh"],
-        correctAnswer: "Sukhwinder Singh"
-      },
-      {
-        question: "Set 7 - Which singer holds the Guinness World Record for recording the most number of songs?",
-        options: ["Kishore Kumar", "Mohammed Rafi", "Lata Mangeshkar", "Asha Bhosle"],
-        correctAnswer: "Asha Bhosle"
-      }
-    ],
-    [
-      {
-        question: "Set 8 - Which song from the movie '3 Idiots' became an anthem for students?",
-        options: ["All Is Well", "Behti Hawa Sa Tha Woh", "Zoobi Doobi", "Jaane Nahin Denge Tujhe"],
-        correctAnswer: "All Is Well"
-      },
-      {
-        question: "Set 8 - Which song from the film 'Rockstar' is known for its powerful lyrics and music, composed by A.R. Rahman?",
-        options: ["Sadda Haq", "Kun Faya Kun", "Tum Ho", "Jo Bhi Main"],
-        correctAnswer: "Sadda Haq"
-      },
-      {
-        question: "Set 8 - Who was the first person to reach the South Pole?",
-        options: ["Robert Falcon Scott", "Roald Amundsen", "Ernest Shackleton", "Edmund Hillary"],
-        correctAnswer: "Roald Amundsen"
-      },
-      {
-        question: "Set 8 - What is the name of the first artificial satellite launched into space?",
-        options: ["Sputnik 1", "Apollo 11", "Voyager 1", "Hubble"],
-        correctAnswer: "Sputnik 1"
-      },
-      {
-        question: "Set 8 - What is the primary component of natural gas?",
-        options: ["Ethane", "Propane", "Methane", "Butane"],
-        correctAnswer: "Methane"
-      },
-      {
-        question: "Set 8 - Who wrote 'War and Peace'?",
-        options: ["Leo Tolstoy", "Fyodor Dostoevsky", "Alexander Pushkin", "Anton Chekhov"],
-        correctAnswer: "Leo Tolstoy"
-      },
-      {
-        question: "Set 8 - What is the second most abundant gas in the Earth's atmosphere?",
-        options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"],
-        correctAnswer: "Oxygen"
-      },
-      {
-        question: "Set 8 - Who composed the iconic song 'Vande Mataram' that became the national song of India?",
-        options: ["0", "10", "20", "30"],
-        correctAnswer: "0"
-      },
-      {
-        question: "Set 8 - Who painted 'Starry Night'?",
-        options: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
-        correctAnswer: "Vincent van Gogh"
-      },
-      {
-        question: "Set 8 - What is the second smallest country in the world?",
-        options: ["Rabindranath Tagore", "Vatican City", "A.R. Rahman", " Ananda Samarakoon"],
-        correctAnswer: "Bankim Chandra Chattopadhyay"
-      }
-    ],
-    [
-      {
-        question: "Set 9 - Who developed the theory of relativity?",
-        options: ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Galileo Galilei"],
-        correctAnswer: "Albert Einstein"
-      },
-      {
-        question: "Set 9 - What is the name of the first cloned mammal?",
-        options: ["Dolly the sheep", "Polly the cow", "Molly the dog", "Sally the cat"],
-        correctAnswer: "Dolly the sheep"
-      },
-      {
-        question: "Set 9 - What is the process of cell division called?",
-        options: ["Meiosis", "Mitosis", "Cytokinesis", "Binary fission"],
-        correctAnswer: "Mitosis"
-      },
-      {
-        question: "Set 9 - What is the rarest naturally occurring element on Earth?",
-        options: ["Francium", "Astatine", "Technetium", "Polonium"],
-        correctAnswer: "Astatine"
-      },
-      {
-        question: "Set 9 - Who is considered the 'Father of Indian Football'?",
-        options: ["Syed Abdul Rahim", "P.K. Banerjee", "Sailen Manna", "Gostha Pal"],
-        correctAnswer: "Gostha Pal"
-      },
-      {
-        question: "Set 9 - Which Indian footballer has the highest number of international goals?",
-        options: ["Amrinder Singh", "Brandon Fernandes", "Sunil Chhetri", "Gurpreet Singh Sandhu"],
-        correctAnswer: "Sunil Chhetri"
-      },
-      {
-        question: "Set 9 - The ancient city of Harappa is located in which present-day country?",
-        options: ["Pakistan", "India", "Nepal", "Bangladesh"],
-        correctAnswer: "Pakistan"
-      },
-      {
-        question: "Set 9 - Who was the founder of the Mughal Empire in India?",
-        options: ["Akbar", "Humayun", "Babur", "Aurangzeb"],
-        correctAnswer: "Babur"
-      },
-      {
-        question: "Set 9 - Who wrote the Indian national anthem 'Jana Gana Mana'?",
-        options: ["Bankim Chandra Chattopadhyay", "Sarojini Naidu", "Subramania Bharati", "Rabindranath Tagore"],
-        correctAnswer: "Rabindranath Tagore"
-      },
-      {
-        question: "Set 9 - Who was the father of Lord Rama?",
-        options: ["Dasharatha", "Janaka", "Bharata", "Vishvamitra"],
-        correctAnswer: "Dasharatha"
-      }
-    ],
-    [
-      {
-        question: "Set 10 - Which demon king abducted Sita?",
-        options: ["Ravan", "Kumbhakarn", "Vibhishan", "Surpanakha"],
-        correctAnswer: "Ravan"
-      },
-      {
-        question: "Set 10 - Who is known as the warrior who fought on the side of the Kauravas but was the son of Kunti?",
-        options: ["Arjuna", "Yudhishthira", "Bhima", "Karna"],
-        correctAnswer: "Karna"
-      },
-      {
-        question: "Set 10 - What is the name of the kingdom ruled by the Pandavas?",
-        options: ["Hastinapur", "Panchal", "Indraprastha", "Dwarka"],
-        correctAnswer: "Indraprastha"
-      },
-      {
-        question: "Set 10 - Who revealed the Bhagavad Gita to Arjuna?",
-        options: ["Bhishm", "Drona", "Lord Krishn", "Vyasa"],
-        correctAnswer: "George Orwell"
-      },
-      {
-        question: "Set 10 - Which Guru compiled the Guru Granth Sahib?",
-        options: ["Guru Angad", "Guru Arjan", "Guru Tegh Bahadur", "Guru Gobind Singh"],
-        correctAnswer: "Guru Arjan"
-      },
-      {
-        question: "Set 10 - Who is considered the founder of Jainism?",
-        options: ["Mahavira", "Rishabhanatha", "Parshvanatha", "Gautam Buddha"],
-        correctAnswer: "Mahavira"
-      },
-      {
-        question: "Set 10 - Which symbol is associated with Jainism?",
-        options: ["Lotus", "Swastik", "Om", "Trishul"],
-        correctAnswer: "Swastik"
-      },
-      {
-        question: "Set 10 - Where was Gautam Buddha born?",
-        options: ["Lumbini", "Bodh Gaya", "Sarnath", "Kushinagar"],
-        correctAnswer: "Lumbini"
-      },
-      {
-        question: "Set 10 - Where did Gautam Buddha attain enlightenment?",
-        options: ["Sarnath", "Bodh Gaya", "Lumbini", "Rajgir"],
-        correctAnswer: "Bodh Gaya"
-      },
-      {
-        question: "Set 10 - Who created this KBC Game?",
-        options: ["Tarun Thakur", "Girish Janyani", "Mohit Bhagchandani", "Kushik Sahu"],
-        correctAnswer: "Tarun Thakur"
-      }
-    ],
-  ];
-
-  // Variable to track the current set index
-  let currentSetIndex = 0;
-  let usedFiftyFifty = false;
-  let usedFlipQuestion = false;
-
-  // Function to get a random question from the current set
-  function getRandomQuestionFromCurrentSet() {
-    const set = questionSets[currentSetIndex];
-    const randomIndex = Math.floor(Math.random() * set.length);
-    return set[randomIndex];
-  }
-  // ---------------------------------------------------------------------------------------------------
-  // Function to handle option click
-  function handleOptionClick(event) {
-    // Stop the timer when an option is clicked
-    if (window.timerInterval) {
-      clearInterval(window.timerInterval);
+    // Function to check if the element has the expected background color
+    function hasYellowBackground(element) {
+      return element && window.getComputedStyle(element).backgroundColor === 'rgb(234, 179, 8)';
     }
 
-    const selectedOption = event.target.textContent;
-    const resultElement = document.getElementById('result');
-    const nextQuestionDiv = document.getElementById('nextQuestionDiv');
-    const retryDiv = document.getElementById('retryDiv');
-    const lifelinesDiv = document.getElementById('lifelines');
+    // Function to update the quitVariable based on the highlighted element
+    function updateQuitVariable() {
+      if (hasYellowBackground(element1k)) {
+        quitVariable = 1000;
+      } else if (hasYellowBackground(element2k)) {
+        quitVariable = 2000;
+      } else if (hasYellowBackground(element40k)) {
+        quitVariable = 40000;
+      } else if (hasYellowBackground(element80k)) {
+        quitVariable = 80000;
+      } else if (hasYellowBackground(element3l)) {
+        quitVariable = 300000;
+      } else if (hasYellowBackground(element6l)) {
+        quitVariable = 600000;
+      } else if (hasYellowBackground(element12l)) {
+        quitVariable = 1200000;
+      } else if (hasYellowBackground(element25l)) {
+        quitVariable = 2500000;
+      } else if (hasYellowBackground(element1c)) {
+        quitVariable = 10000000;
+      } else if (hasYellowBackground(element7c)) {
+        quitVariable = 70000000;
+      } else {
+        quitVariable = 0;
+      }
+    }
 
-    // Hide lifelines
-    lifelinesDiv.style.display = 'none';
-
-    // Disable all options after selection
-    document.querySelectorAll('#optionsList li').forEach(li => {
-      li.style.pointerEvents = 'none';
+    // Event listener for the Quit button
+    document.getElementById('quitButton').addEventListener('click', () => {
+      updateQuitVariable();
+      document.getElementById('mainDiv').style.display = 'none';
+      clearInterval(window.timerInterval);
+      ticticAudio.pause();
+      ticticAudio.currentTime = 0;
+      document.getElementById('quitMessage').textContent = `Congrats! You won Rs ${quitVariable}`;
+      document.getElementById('quitBox').classList.remove('hidden');
     });
 
-    const selectedOptionTrimmed = selectedOption.trim();
-    const correctAnswerTrimmed = currentQuestion.correctAnswer.trim();
+    // Event listener for the Play Again button
+    document.getElementById('nextBtn2').addEventListener('click', reloadPage);
 
-    if (selectedOptionTrimmed === correctAnswerTrimmed) {
-      resultElement.textContent = "Correct Answer";
-      nextQuestionDiv.style.display = 'block';
-      // Hide options
-      document.querySelector('.optionAContainer').classList.add('hidden');
-      document.querySelector('.optionBContainer').classList.add('hidden');
-      document.querySelector('.optionCContainer').classList.add('hidden');
-      document.querySelector('.optionDContainer').classList.add('hidden');
-      // Show the "Show Options" button
+    // Function to disable click events on options
+    function disableOptions() {
+      const optionContainers = document.querySelectorAll('.optionAContainer, .optionBContainer, .optionCContainer, .optionDContainer');
+      optionContainers.forEach(option => {
+        option.classList.add('pointer-events-none');
+      });
+    }
+    // ---------------------------------------
+    // let currentQuestionNumber = 0;
+    // ----------------------------------------------------------
+    const totalQuestions = 9;
+    // let currentQuestionSet = 1; // Initialize it with the first question set
+    //audio functions
+    // ----------------introduction audio start and stop function---------------
+    const introSound = document.getElementById('progress-audio');
+    function startIntroSoundAudio() {
+      introSound.play();
+    }
 
-      // Start the respective audio based on the question set
-      switch (currentQuestionSet) {
-        case 1:
-          startFirstAnswerAudio();
-          break;
-        case 2:
-          startSecondAnswerAudio();
-          break;
-        case 3:
-          startThirdAnswerAudio();
-          break;
-        case 4:
-          startFourthAnswerAudio();
-          break;
-        case 5:
-          startFifthAnswerAudio();
-          break;
-        case 6:
-          startSixthAnswerAudio();
-          break;
-        case 7:
-          startSeventhAnswerAudio();
-          break;
-        case 8:
-          startEightAnswerAudio();
-          break;
-        case 9:
-          startNinthAnswerAudio();
-          break;
-        case 10:
-          startTenthAnswerAudio();
-          break;
-        default:
-          // Handle default case
-          break;
+    function stopIntroSoundAudio() {
+      introSound.pause();
+    }
+    // ---------------------1st answer audio start and stop function----------------
+    const onekAnswerAudio = document.getElementById('1kAnswerAudio');
+    function startFirstAnswerAudio() {
+      onekAnswerAudio.play();
+    }
+
+    // Function to stop audio
+    function stopFirstAnswerAudio() {
+      onekAnswerAudio.pause();
+      onekAnswerAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------2nd answer audio start and stop function-----------------
+    const fivekAnswerAudio = document.getElementById('2kAnswerAudio');
+    function startSecondAnswerAudio() {
+      fivekAnswerAudio.play();
+    }
+
+    // Function to stop audio
+    function stopSecondAnswerAudio() {
+      fivekAnswerAudio.pause();
+      fivekAnswerAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------3rd question audio start and stop function-----------------
+    const fourtykQuestionAudio = document.getElementById('40kQuestionAudio');
+    function startThirdQuestionAudio() {
+      fourtykQuestionAudio.play();
+    }
+
+    // Function to stop audio
+    function stopThirdQuestionAudio() {
+      fourtykQuestionAudio.pause();
+      fourtykQuestionAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------3rd answer audio start and stop function-----------------
+    const fourtykAnswerAudio = document.getElementById('40kAnswerAudio');
+    function startThirdAnswerAudio() {
+      fourtykAnswerAudio.play();
+    }
+
+    // Function to stop audio
+    function stopThirdAnswerAudio() {
+      fourtykAnswerAudio.pause();
+      fourtykAnswerAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------4th question audio start and stop function-----------------
+    const eightykQuestionAudio = document.getElementById('80kQuestionAudio');
+    function startFourthQuestionAudio() {
+      eightykQuestionAudio.play();
+    }
+
+    // Function to stop audio
+    function stopFourthQuestionAudio() {
+      eightykQuestionAudio.pause();
+      eightykQuestionAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------4th answer audio start and stop function-----------------
+    const eightykAnswerAudio = document.getElementById('80kAnswerAudio');
+    function startFourthAnswerAudio() {
+      eightykAnswerAudio.play();
+    }
+
+    // Function to stop audio
+    function stopFourthAnswerAudio() {
+      eightykAnswerAudio.pause();
+      eightykAnswerAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------5th question audio start and stop function-----------------
+    const threeLakhQuestionAudio = document.getElementById('3lakhQuestionAudio');
+    function startFifthQuestionAudio() {
+      threeLakhQuestionAudio.play();
+    }
+
+    // Function to stop audio
+    function stopFifthQuestionAudio() {
+      threeLakhQuestionAudio.pause();
+      threeLakhQuestionAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------5th answer audio start and stop function-----------------
+    const threeLakhAnswerAudio = document.getElementById('3lakhAnswerAudio');
+    function startFifthAnswerAudio() {
+      threeLakhAnswerAudio.play();
+    }
+
+    // Function to stop audio
+    function stopFifthAnswerAudio() {
+      threeLakhAnswerAudio.pause();
+      threeLakhAnswerAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------6th question audio start and stop function-----------------
+    const sixLakhQuestionAudio = document.getElementById('6lakhQuestionAudio');
+    function startSixthQuestionAudio() {
+      sixLakhQuestionAudio.play();
+    }
+
+    // Function to stop audio
+    function stopSixthQuestionAudio() {
+      sixLakhQuestionAudio.pause();
+      sixLakhQuestionAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------6th answer audio start and stop function-----------------
+    const sixLakhAnswerAudio = document.getElementById('6lakhAnswerAudio');
+    function startSixthAnswerAudio() {
+      sixLakhAnswerAudio.play();
+    }
+
+    // Function to stop audio
+    function stopSixthAnswerAudio() {
+      sixLakhAnswerAudio.pause();
+      sixLakhAnswerAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------7th question audio start and stop function-----------------
+    const twelveLakhQuestionAudio = document.getElementById('12lakhQuestionAudio');
+    function startSeventhQuestionAudio() {
+      twelveLakhQuestionAudio.play();
+    }
+
+    // Function to stop audio
+    function stopSeventhQuestionAudio() {
+      twelveLakhQuestionAudio.pause();
+      twelveLakhQuestionAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------7th answer audio start and stop function-----------------
+    const twelveLakhAnswerAudio = document.getElementById('12lakhAnswerAudio');
+    function startSeventhAnswerAudio() {
+      twelveLakhAnswerAudio.play();
+    }
+
+    // Function to stop audio
+    function stopSeventhAnswerAudio() {
+      twelveLakhAnswerAudio.pause();
+      twelveLakhAnswerAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------8th question audio start and stop function-----------------
+    const twentyfiveLakhQuestionAudio = document.getElementById('25lakhQuestionAudio');
+    function startEightQuestionAudio() {
+      twentyfiveLakhQuestionAudio.play();
+    }
+
+    // Function to stop audio
+    function stopEightQuestionAudio() {
+      twentyfiveLakhQuestionAudio.pause();
+      twentyfiveLakhQuestionAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------8th answer audio start and stop function-----------------
+    const twentyfiveLakhAnswerAudio = document.getElementById('25lakhAnswerAudio');
+    function startEightAnswerAudio() {
+      twentyfiveLakhAnswerAudio.play();
+    }
+
+    // Function to stop audio
+    function stopEightAnswerAudio() {
+      twentyfiveLakhAnswerAudio.pause();
+      twentyfiveLakhAnswerAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------9th question audio start and stop function-----------------
+    const oneCroreQuestionAudio = document.getElementById('1croreQuestionAudio');
+    function startNinthQuestionAudio() {
+      oneCroreQuestionAudio.play();
+    }
+
+    // Function to stop audio
+    function stopNinthQuestionAudio() {
+      oneCroreQuestionAudio.pause();
+      oneCroreQuestionAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------9th answer audio start and stop function-----------------
+    const oneCroreAnswerAudio = document.getElementById('1croreAnswerAudio');
+    function startNinthAnswerAudio() {
+      oneCroreAnswerAudio.play();
+    }
+
+    // Function to stop audio
+    function stopNinthAnswerAudio() {
+      oneCroreAnswerAudio.pause();
+      oneCroreAnswerAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ---------------------10th answer audio start and stop function-----------------
+    const sevenCroreAnswerAudio = document.getElementById('7croreAnswerAudio');
+    function startTenthAnswerAudio() {
+      sevenCroreAnswerAudio.play();
+    }
+
+    // Function to stop audio
+    function stopTenthAnswerAudio() {
+      sevenCroreAnswerAudio.pause();
+      sevenCroreAnswerAudio.currentTime = 0; // Reset audio to the start
+    }
+    // ------------------wrong answer audio logic for all wrong options----------------
+    const wrongAnswerAudio = document.getElementById("wrongAnswerAudio");
+    function startWrongAnswerAudio() {
+      wrongAnswerAudio.play();
+    }
+
+    function stopWrongAnswerAudio() {
+      wrongAnswerAudio.pause();
+      wrongAnswerAudio.currentTime = 0;
+    }
+
+    // Array of question sets
+    const questionSets = [
+      [
+        {
+          question: "Set 1 - Who was the first Prime Minister of India?",
+          options: ["Mahatma Gandhi", "Sardar Vallabhbhai Patel", "Dr. Rajendra Prasad", "Jawaharlal Nehru"],
+          correctAnswer: "Jawaharlal Nehru"
+        },
+        {
+          question: "'Tum mujhe khoon do main tumhen aazadi dunga' was said by-",
+          options: ["Bhagat Singh", "Mahatma Gandhi", "Netaji Subhash Chandra Bose", "Sardar Vallabhbhai Patel"],
+          correctAnswer: "Netaji Subhash Chandra Bose"
+        },
+        {
+          question: "Set 1 - What is the largest planet in our solar system?",
+          options: ["Earth", "Jupiter", "Mars", "Venus"],
+          correctAnswer: "Jupiter"
+        },
+        {
+          question: "Set 1 - Who wrote 'गुनाहों का देवता'?",
+          options: ["Dharamvir Bharati", "Prem Chand", "Ernest Hemingway", "Jane Austen"],
+          correctAnswer: "Dharamvir Bharati"
+        },
+        {
+          question: "Set 1 - What year did the first man walk on the moon?",
+          options: ["1969", "1959", "1979", "1989"],
+          correctAnswer: "1969"
+        },
+        {
+          question: "Set 1 - What is the chemical symbol for gold?",
+          options: ["Fe", "Ag", "Pb", "Au"],
+          correctAnswer: "Au"
+        },
+        {
+          question: "Set 1 - Who is known as the Father of Computers?",
+          options: ["Alan Turing", "Charles Babbage", "John von Neumann", "Ada Lovelace"],
+          correctAnswer: "Charles Babbage"
+        },
+        {
+          question: "Set 1 - What is the boiling point of water in Celsius?",
+          options: ["100", "90", "80", "110"],
+          correctAnswer: "100"
+        },
+        {
+          question: "Set 1 - Who painted the Mona Lisa?",
+          options: ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Claude Monet"],
+          correctAnswer: "Leonardo da Vinci"
+        },
+        {
+          question: "Set 1 - What is the smallest country in the world?",
+          options: ["Singapore", "Monaco", "Vatican City", "Liechtenstein"],
+          correctAnswer: "Vatican City"
+        }
+      ],
+      // Repeat similarly for 9 more sets, with unique questions in each
+      [
+        {
+          question: "Set 2 - What is the smallest prime number?",
+          options: ["0", "1", "2", "3"],
+          correctAnswer: "2"
+        },
+        {
+          question: "Set 2 - Who painted the Mona Lisa?",
+          options: ["Vincent van Gogh", "Pablo Picasso", "Michelangelo", "Leonardo da Vinci"],
+          correctAnswer: "Leonardo da Vinci"
+        },
+        {
+          question: "Set 2 - What is the chemical symbol for water?",
+          options: ["H", "H2O", "O", "CO2"],
+          correctAnswer: "H2O"
+        },
+        {
+          question: "Set 2 - Which planet is known as the Red Planet?",
+          options: ["Earth", "Mars", "Jupiter", "Saturn"],
+          correctAnswer: "Mars"
+        },
+        {
+          question: "Set 2 - What is the hardest natural substance on Earth?",
+          options: ["Gold", "Iron", "Diamond", "Quartz"],
+          correctAnswer: "Diamond"
+        },
+        {
+          question: "Set 2 - How many legs does a spider have?",
+          options: ["6", "8", "10", "12"],
+          correctAnswer: "8"
+        },
+        {
+          question: "Set 2 - What is the capital city of Australia?",
+          options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+          correctAnswer: "Canberra"
+        },
+        {
+          question: "Set 2 - Who discovered gravity by watching an apple fall?",
+          options: ["Galileo Galilei", "Isaac Newton", "Albert Einstein", "Nikola Tesla"],
+          correctAnswer: "Isaac Newton"
+        },
+        {
+          question: "Set 2 - What is the longest river in the world?",
+          options: ["Nile River", "Amazon River", "Mississippi River", "Yangtze River"],
+          correctAnswer: "Nile River"
+        },
+        {
+          question: "Set 2 - Who is the author of Harry Potter series?",
+          options: ["J.R.R. Tolkien", "C.S. Lewis", "J.K. Rowling", "George R.R. Martin"],
+          correctAnswer: "J.K. Rowling"
+        }
+      ],
+      // ... Add 8 more sets with unique questions in each
+      [
+        {
+          question: "Set 3 - What year did the Titanic sink?",
+          options: ["1905", "1918", "1925", "1912"],
+          correctAnswer: "1912"
+        },
+        {
+          question: "Set 3 - Who developed the theory of relativity?",
+          options: ["Isaac Newton", "Albert Einstein", "Albert Einstein", "Albert Einstein"],
+          correctAnswer: "Albert Einstein"
+        },
+        {
+          question: "Set 3 - What is the capital of Canada?",
+          options: ["Toronto", "Vancouver", "Ottawa", "Montreal"],
+          correctAnswer: "Ottawa"
+        },
+        {
+          question: "Set 3 - What element does 'O' represent on the periodic table?",
+          options: ["Oxygen", "Silver", "Carbon", "Gold"],
+          correctAnswer: "Oxygen"
+        },
+        {
+          question: "Set 3 - Who painted the ceiling of the Sistine Chapel?",
+          options: ["Tarun Thakur", "Vincent van Gogh", "Raphael", "Michelangelo"],
+          correctAnswer: "Michelangelo"
+        },
+        {
+          question: "Set 3 - What is the square root of 144?",
+          options: ["10", "11", "12", "13"],
+          correctAnswer: "12"
+        },
+        {
+          question: "Set 3 - Which country is known as the Land of the Rising Sun?",
+          options: ["China", "Japan", "South Korea", "Thailand"],
+          correctAnswer: "Japan"
+        },
+        {
+          question: "Set 3 - What is the currency of South Africa?",
+          options: ["Peso", "Rand", "Rupees", "Euro"],
+          correctAnswer: "Rand"
+        },
+        {
+          question: "Set 3 - What is the most widely spoken language in the world?",
+          options: ["Spanish", "English", "Hindi", "Mandarin"],
+          correctAnswer: "Mandarin"
+        },
+        {
+          question: "Set 3 - Who is the Greek god of the sea?",
+          options: ["Poseidon", "Zeus", "Hades", "Apollo"],
+          correctAnswer: "Poseidon"
+        }
+      ],
+      [
+        {
+          question: "Set 4 - What is the main ingredient in Chai?",
+          options: ["Chai Patti", "Coffee", "Onion", "Elaichi"],
+          correctAnswer: "Chai Patti"
+        },
+        {
+          question: "Set 4 - What is the capital of India?",
+          options: ["Bhopal", "Kolkata", "New Delhi", "Mumbai"],
+          correctAnswer: "New Delhi"
+        },
+        {
+          question: "Set 4 - Which is the highest mountain in India?",
+          options: ["Mt. K12", "Mt. Nanda Devi", "Mt. Kailash", "Mt. Kangchenjunga"],
+          correctAnswer: "Mt. Kangchenjunga"
+        },
+        {
+          question: "Set 4 - Who wrote 'Half-Girlfriend'?",
+          options: ["Arundhati Roy", "Amrita Pritam", "Chetan Bhagat", "Jane Austen"],
+          correctAnswer: "Chetan Bhagat"
+        },
+        {
+          question: "Set 4 - What is the largest bone in the human body?",
+          options: ["Skull", "Rib", "Humerus", "Femur"],
+          correctAnswer: "Femur"
+        },
+        {
+          question: "Set 4 - Who was the first President of India",
+          options: ["Dr. Rajendra Prasad", "Sarvepalli Radhakrishnan", "A. P. J. Abdul Kalam", "Droupadi Murmu"],
+          correctAnswer: "Dr. Rajendra Prasad"
+        },
+        {
+          question: "Set 4 - who invented USB cable?",
+          options: ["Nicola Tesla", "Elon Musk", "Ajay Bhatt", "Salman Khan"],
+          correctAnswer: "Ajay Bhatt"
+        },
+        {
+          question: "Set 4 - What is the most common gas in the Earth's atmosphere?",
+          options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"],
+          correctAnswer: "Nitrogen"
+        },
+        {
+          question: "Set 4 - What does DNA stand for?",
+          options: ["Deoxyribose acid", "Ribonucleic acid", "Deoxyribonucleic acid", "Nucleic acid"],
+          correctAnswer: "Deoxyribonucleic acid"
+        },
+        {
+          question: "Set 4 - Who was the first man to step on the moon?",
+          options: ["Buzz Aldrin", "Neil Armstrong", "Yuri Gagarin", "Michael Collins"],
+          correctAnswer: "Neil Armstrong"
+        }
+      ],
+      [
+        {
+          question: "Set 5 - Who formulated the laws of motion?",
+          options: ["Albert Einstein", "Galileo Galilei", "Isaac Newton", "James Clerk Maxwell"],
+          correctAnswer: "Isaac Newton"
+        },
+        {
+          question: "Set 5 - What is the largest desert in the world?",
+          options: ["Sahara Desert", "Arabian Desert", "Gobi Desert", "Antarctic Desert"],
+          correctAnswer: "Antarctic Desert"
+        },
+        {
+          question: "Set 5 - Who was the captain of the Indian cricket team when they won the ICC Cricket World Cup in 2011?",
+          options: ["Virat Kohli", "Sourav Ganguly", "MS Dhoni", "Anil Kumble"],
+          correctAnswer: "MS Dhoni"
+        },
+        {
+          question: "Set 5 - Who scored the first double century in One Day Internationals (ODIs) for India?",
+          options: [" Sachin Tendulkar", "Rohit Sharma", "Virender Sehwag", "MS Dhoni"],
+          correctAnswer: " Sachin Tendulkar"
+        },
+        {
+          question: "Set 5 - Which cricketer is known as the 'God of Cricket'?",
+          options: ["Sunil Gavaskar", "Rahul Dravid", "Virat Kohli", "Sachin Tendulkar"],
+          correctAnswer: "Sachin Tendulkar"
+        },
+        {
+          question: "Set 5 - Who wrote गोदान [Godaan]?",
+          options: ["Tulsidaas", "Munshi Premchand", "Ravidaas", "Veerdaas"],
+          correctAnswer: "Munshi Premchand"
+        },
+        {
+          question: "Set 5 - In which year did India win their first ICC T20 World Cup?",
+          options: ["2007", "2009", "2011", "2013"],
+          correctAnswer: "2007"
+        },
+        {
+          question: "Set 5 - Which is the largest state in India by area?",
+          options: ["Uttar Pradesh", "Maharashtra", "Rajasthan", "Madhya Pradesh"],
+          correctAnswer: "Rajasthan"
+        },
+        {
+          question: "Set 5 - Who painted 'Starry Night'?",
+          options: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
+          correctAnswer: "Vincent van Gogh"
+        },
+        {
+          question: "Set 5 - What is the largest country in the world?",
+          options: ["India", "Canada", "Russia", "China"],
+          correctAnswer: "Russia"
+        }
+      ],
+      [
+        {
+          question: "Set 6 - Who is credited with the invention of the concept of zero in mathematics?",
+          options: ["Aryabhata", "Bhaskara I", "Brahmagupta", "Srinivasa Ramanujan"],
+          correctAnswer: "Brahmagupta"
+        },
+        {
+          question: "Set 6 -Which ancient Indian text is known for its early description of the game of chess?",
+          options: ["Arthashastra", "Mahabharata", "Ramayana", "Manasollasa"],
+          correctAnswer: "Manasollasa"
+        },
+        {
+          question: "Set 6 - Who invented the Raman Effect, which earned him a Nobel Prize in Physics?",
+          options: ["C.V. Raman", "Satyendra Nath Bose", "Homi J. Bhabha", "Vikram Sarabhai"],
+          correctAnswer: "C.V. Raman"
+        },
+        {
+          question: "Set 6 - Who was the first woman to win a Nobel Prize?",
+          options: ["Marie Curie", "Rosalind Franklin", "Ada Lovelace", "Dorothy Hodgkin"],
+          correctAnswer: "Marie Curie"
+        },
+        {
+          question: "Set 6 - Who is considered the father of India's space program and founded the ISRO?",
+          options: ["A.P.J. Abdul Kalam", "Vikram Sarabhai", "Satish Dhawan", "Homi J. Bhabha"],
+          correctAnswer: "Vikram Sarabhai"
+        },
+        {
+          question: "Set 6 - Who is credited with the development of the 'Shampoo', derived from the Hindi word 'Champu', meaning to massage?",
+          options: ["Indian barber", "Indian washermen", "Indian ayurvedic practitioners", "Indian spice traders"],
+          correctAnswer: "Indian ayurvedic practitioners"
+        },
+        {
+          question: "Set 6 - What is the heaviest naturally occurring element?",
+          options: ["Uranium", "Lead", "Gold", "Platinum"],
+          correctAnswer: "Uranium"
+        },
+        {
+          question: "Set 6 - Which ancient Indian surgeon is known for his work 'Sushruta Samhita' that describes surgical techniques including plastic surgery?",
+          options: ["Sushruta", "Charaka", "Dhanvantari", "Vagbhata"],
+          correctAnswer: "Sushruta"
+        },
+        {
+          question: "Set 6 - Which Indian actor is known as the 'Tragedy King' of Bollywood?",
+          options: ["Raj Kapoor", "Dilip Kumar", "Dev Anand", "Guru Dutt"],
+          correctAnswer: "Dilip Kumar"
+        },
+        {
+          question: "Set 6 - Which Bollywood movie was India's official entry to the Oscars for Best Foreign Language Film in 2001 and won an Academy Award for Best Original Score?",
+          options: ["Lagaan", "Dil Chahta Hai", "Kabhi Khushi Kabhie Gham", "Gadar: Ek Prem Katha"],
+          correctAnswer: "Lagaan"
+        }
+      ],
+      [
+        {
+          question: "Set 7 - Which movie, directed by Ramesh Sippy, is considered one of the greatest and most successful Indian films of all time?",
+          options: ["Deewar", "Sholay", "Don", "Anand"],
+          correctAnswer: "Sholay"
+        },
+        {
+          question: "Set 7 - Who composed the music for the film 'Slumdog Millionaire', which won the Oscar for Best Original Score?",
+          options: ["Shankar-Ehsaan-Loy", "Anu Malik", "Pritam", "A.R. Rahman"],
+          correctAnswer: "A.R. Rahman"
+        },
+        {
+          question: "Set 7 - Who proposed the heliocentric theory of the universe?",
+          options: ["Ptolemy", "Aristotle", "Nicolaus Copernicus", "Galileo Galilei"],
+          correctAnswer: "Nicolaus Copernicus"
+        },
+        {
+          question: "Set 7 - What is the capital city of Bhutan?",
+          options: ["Thimphu", "Kathmandu", "Lhasa", "Colombo"],
+          correctAnswer: "Thimphu"
+        },
+        {
+          question: "Set 7 - Who developed the polio vaccine?",
+          options: ["Alexander Fleming", "Jonas Salk", "Louis Pasteur", "Robert Koch"],
+          correctAnswer: "Jonas Salk"
+        },
+        {
+          question: "Set 7 - What is the most abundant element in the universe?",
+          options: ["Oxygen", "Carbon", "Helium", "Hydrogen"],
+          correctAnswer: "Hydrogen"
+        },
+        {
+          question: "Set 7 - Which song from the movie 'RRR' won the Golden Globe Award for Best Original Song in 2023?",
+          options: ["Naatu Naatu", "Dosti", "Komuram Bheemudo", "Janani"],
+          correctAnswer: "Naatu Naatu"
+        },
+        {
+          question: "Set 7 - Which Indian singer is known as the 'Nightingale of India'?",
+          options: ["Shreya Ghoshal", "Alka Yagnik", "Lata Mangeshkar", "Asha Bhosle"],
+          correctAnswer: "Lata Mangeshkar"
+        },
+        {
+          question: "Set 7 - Who sang the famous song 'Chaiyya Chaiyya' from the movie 'Dil Se'?",
+          options: ["Sonu Nigam", "Udit Narayan", "Sukhwinder Singh", "Arijit Singh"],
+          correctAnswer: "Sukhwinder Singh"
+        },
+        {
+          question: "Set 7 - Which singer holds the Guinness World Record for recording the most number of songs?",
+          options: ["Kishore Kumar", "Mohammed Rafi", "Lata Mangeshkar", "Asha Bhosle"],
+          correctAnswer: "Asha Bhosle"
+        }
+      ],
+      [
+        {
+          question: "Set 8 - Which song from the movie '3 Idiots' became an anthem for students?",
+          options: ["All Is Well", "Behti Hawa Sa Tha Woh", "Zoobi Doobi", "Jaane Nahin Denge Tujhe"],
+          correctAnswer: "All Is Well"
+        },
+        {
+          question: "Set 8 - Which song from the film 'Rockstar' is known for its powerful lyrics and music, composed by A.R. Rahman?",
+          options: ["Sadda Haq", "Kun Faya Kun", "Tum Ho", "Jo Bhi Main"],
+          correctAnswer: "Sadda Haq"
+        },
+        {
+          question: "Set 8 - Who was the first person to reach the South Pole?",
+          options: ["Robert Falcon Scott", "Roald Amundsen", "Ernest Shackleton", "Edmund Hillary"],
+          correctAnswer: "Roald Amundsen"
+        },
+        {
+          question: "Set 8 - What is the name of the first artificial satellite launched into space?",
+          options: ["Sputnik 1", "Apollo 11", "Voyager 1", "Hubble"],
+          correctAnswer: "Sputnik 1"
+        },
+        {
+          question: "Set 8 - What is the primary component of natural gas?",
+          options: ["Ethane", "Propane", "Methane", "Butane"],
+          correctAnswer: "Methane"
+        },
+        {
+          question: "Set 8 - Who wrote 'War and Peace'?",
+          options: ["Leo Tolstoy", "Fyodor Dostoevsky", "Alexander Pushkin", "Anton Chekhov"],
+          correctAnswer: "Leo Tolstoy"
+        },
+        {
+          question: "Set 8 - What is the second most abundant gas in the Earth's atmosphere?",
+          options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"],
+          correctAnswer: "Oxygen"
+        },
+        {
+          question: "Set 8 - Who composed the iconic song 'Vande Mataram' that became the national song of India?",
+          options: ["0", "10", "20", "30"],
+          correctAnswer: "0"
+        },
+        {
+          question: "Set 8 - Who painted 'Starry Night'?",
+          options: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
+          correctAnswer: "Vincent van Gogh"
+        },
+        {
+          question: "Set 8 - What is the second smallest country in the world?",
+          options: ["Rabindranath Tagore", "Vatican City", "A.R. Rahman", " Ananda Samarakoon"],
+          correctAnswer: "Bankim Chandra Chattopadhyay"
+        }
+      ],
+      [
+        {
+          question: "Set 9 - Who developed the theory of relativity?",
+          options: ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Galileo Galilei"],
+          correctAnswer: "Albert Einstein"
+        },
+        {
+          question: "Set 9 - What is the name of the first cloned mammal?",
+          options: ["Dolly the sheep", "Polly the cow", "Molly the dog", "Sally the cat"],
+          correctAnswer: "Dolly the sheep"
+        },
+        {
+          question: "Set 9 - What is the process of cell division called?",
+          options: ["Meiosis", "Mitosis", "Cytokinesis", "Binary fission"],
+          correctAnswer: "Mitosis"
+        },
+        {
+          question: "Set 9 - What is the rarest naturally occurring element on Earth?",
+          options: ["Francium", "Astatine", "Technetium", "Polonium"],
+          correctAnswer: "Astatine"
+        },
+        {
+          question: "Set 9 - Who is considered the 'Father of Indian Football'?",
+          options: ["Syed Abdul Rahim", "P.K. Banerjee", "Sailen Manna", "Gostha Pal"],
+          correctAnswer: "Gostha Pal"
+        },
+        {
+          question: "Set 9 - Which Indian footballer has the highest number of international goals?",
+          options: ["Amrinder Singh", "Brandon Fernandes", "Sunil Chhetri", "Gurpreet Singh Sandhu"],
+          correctAnswer: "Sunil Chhetri"
+        },
+        {
+          question: "Set 9 - The ancient city of Harappa is located in which present-day country?",
+          options: ["Pakistan", "India", "Nepal", "Bangladesh"],
+          correctAnswer: "Pakistan"
+        },
+        {
+          question: "Set 9 - Who was the founder of the Mughal Empire in India?",
+          options: ["Akbar", "Humayun", "Babur", "Aurangzeb"],
+          correctAnswer: "Babur"
+        },
+        {
+          question: "Set 9 - Who wrote the Indian national anthem 'Jana Gana Mana'?",
+          options: ["Bankim Chandra Chattopadhyay", "Sarojini Naidu", "Subramania Bharati", "Rabindranath Tagore"],
+          correctAnswer: "Rabindranath Tagore"
+        },
+        {
+          question: "Set 9 - Who was the father of Lord Rama?",
+          options: ["Dasharatha", "Janaka", "Bharata", "Vishvamitra"],
+          correctAnswer: "Dasharatha"
+        }
+      ],
+      [
+        {
+          question: "Set 10 - Which demon king abducted Sita?",
+          options: ["Ravan", "Kumbhakarn", "Vibhishan", "Surpanakha"],
+          correctAnswer: "Ravan"
+        },
+        {
+          question: "Set 10 - Who is known as the warrior who fought on the side of the Kauravas but was the son of Kunti?",
+          options: ["Arjuna", "Yudhishthira", "Bhima", "Karna"],
+          correctAnswer: "Karna"
+        },
+        {
+          question: "Set 10 - What is the name of the kingdom ruled by the Pandavas?",
+          options: ["Hastinapur", "Panchal", "Indraprastha", "Dwarka"],
+          correctAnswer: "Indraprastha"
+        },
+        {
+          question: "Set 10 - Who revealed the Bhagavad Gita to Arjuna?",
+          options: ["Bhishm", "Drona", "Lord Krishn", "Vyasa"],
+          correctAnswer: "George Orwell"
+        },
+        {
+          question: "Set 10 - Which Guru compiled the Guru Granth Sahib?",
+          options: ["Guru Angad", "Guru Arjan", "Guru Tegh Bahadur", "Guru Gobind Singh"],
+          correctAnswer: "Guru Arjan"
+        },
+        {
+          question: "Set 10 - Who is considered the founder of Jainism?",
+          options: ["Mahavira", "Rishabhanatha", "Parshvanatha", "Gautam Buddha"],
+          correctAnswer: "Mahavira"
+        },
+        {
+          question: "Set 10 - Which symbol is associated with Jainism?",
+          options: ["Lotus", "Swastik", "Om", "Trishul"],
+          correctAnswer: "Swastik"
+        },
+        {
+          question: "Set 10 - Where was Gautam Buddha born?",
+          options: ["Lumbini", "Bodh Gaya", "Sarnath", "Kushinagar"],
+          correctAnswer: "Lumbini"
+        },
+        {
+          question: "Set 10 - Where did Gautam Buddha attain enlightenment?",
+          options: ["Sarnath", "Bodh Gaya", "Lumbini", "Rajgir"],
+          correctAnswer: "Bodh Gaya"
+        },
+        {
+          question: "Set 10 - Who created this KBC Game?",
+          options: ["Tarun Thakur", "Girish Janyani", "Mohit Bhagchandani", "Kushik Sahu"],
+          correctAnswer: "Tarun Thakur"
+        }
+      ],
+    ];
+
+    // Variable to track the current set index
+    // let currentSetIndex = 0;
+    let usedFiftyFifty = false;
+    let usedFlipQuestion = false;
+
+    // Function to get a random question from the current set
+    function getRandomQuestionFromCurrentSet() {
+      const set = questionSets[currentSetIndex];
+      const randomIndex = Math.floor(Math.random() * set.length);
+      return set[randomIndex];
+    }
+    // ---------------------------------------------------------------------------------------------------
+    // Function to handle option click
+    function handleOptionClick(event) {
+      console.log(`${event.target.id} clicked`);
+      // Stop the timer when an option is clicked
+      if (window.timerInterval) {
+        clearInterval(window.timerInterval);
       }
 
-    } else {
-      resultElement.textContent = "Wrong Answer";
-      retryDiv.style.display = 'block';
-      startWrongAnswerAudio();
+      const selectedOption = event.target.textContent;
+      const resultElement = document.getElementById('result');
+      const nextQuestionDiv = document.getElementById('nextQuestionDiv');
+      const retryDiv = document.getElementById('retryDiv');
+      const lifelinesDiv = document.getElementById('lifelines');
+
+      // Hide lifelines
+      lifelinesDiv.style.display = 'none';
+
+      // Disable all options after selection
+      document.querySelectorAll('#optionsList li').forEach(li => {
+        li.style.pointerEvents = 'none';
+      });
+
+      const selectedOptionTrimmed = selectedOption.trim();
+      const correctAnswerTrimmed = currentQuestion.correctAnswer.trim();
+
+      // Assuming you have the selected option and the correct answer variables defined
+if (selectedOptionTrimmed === correctAnswerTrimmed) {
+    resultElement.textContent = "Correct Answer";
+    nextQuestionDiv.style.display = 'block';
+    
+    // Hide options
+    document.querySelector('.optionAContainer').classList.add('hidden');
+    document.querySelector('.optionBContainer').classList.add('hidden');
+    document.querySelector('.optionCContainer').classList.add('hidden');
+    document.querySelector('.optionDContainer').classList.add('hidden');
+    
+    // Start the respective audio based on the question set
+    switch (currentQuestionSet) {
+        case 1:
+            startFirstAnswerAudio();
+            break;
+        case 2:
+            startSecondAnswerAudio();
+            break;
+        case 3:
+            startThirdAnswerAudio();
+            break;
+        case 4:
+            startFourthAnswerAudio();
+            break;
+        case 5:
+            startFifthAnswerAudio();
+            break;
+        case 6:
+            startSixthAnswerAudio();
+            break;
+        case 7:
+            startSeventhAnswerAudio();
+            break;
+        case 8:
+            startEightAnswerAudio();
+            break;
+        case 9:
+            startNinthAnswerAudio();
+            break;
+        case 10:
+            startTenthAnswerAudio();
+            break;
+        default:
+            // Handle default case
+            break;
+    }
+} else {
+    resultElement.textContent = "Wrong Answer";
+    retryDiv.style.display = 'block';
+    startWrongAnswerAudio();
+
+    // Add red background color to the incorrect option
+    document.querySelector('.optionContainer').forEach(option => {
+        if (option.textContent.trim() === selectedOptionTrimmed) {
+            option.style.backgroundColor = 'red';
+        }
+    });
+}
+
+
+
     }
 
 
-  }
+    // Function to load a new question
+    function loadNewQuestion() {
+      // Clear result and hide next question and retry divs
+      document.getElementById('result').textContent = '';
+      document.getElementById('nextQuestionDiv').style.display = 'none';
+      document.getElementById('retryDiv').style.display = 'none';
 
+      currentQuestion = getRandomQuestionFromCurrentSet();
 
-  // Function to load a new question
-  function loadNewQuestion() {
-    // Clear result and hide next question and retry divs
-    document.getElementById('result').textContent = '';
-    document.getElementById('nextQuestionDiv').style.display = 'none';
-    document.getElementById('retryDiv').style.display = 'none';
+      // Insert the random question into the div with class "questionContainer"
+      const questionContainerDiv = document.querySelector('.questionContainer');
+      questionContainerDiv.querySelector('.absolute').textContent = currentQuestion.question;
 
-    currentQuestion = getRandomQuestionFromCurrentSet();
+      // Get the container for options
+      const optionAContainer = document.querySelector('.optionAContainer');
+      const optionBContainer = document.querySelector('.optionBContainer');
+      const optionCContainer = document.querySelector('.optionCContainer');
+      const optionDContainer = document.querySelector('.optionDContainer');
 
-    // Insert the random question into the div with class "questionContainer"
-    const questionContainerDiv = document.querySelector('.questionContainer');
-    questionContainerDiv.querySelector('.absolute').textContent = currentQuestion.question;
-
-    // Get the container for options
-    const optionAContainer = document.querySelector('.optionAContainer');
-    const optionBContainer = document.querySelector('.optionBContainer');
-    const optionCContainer = document.querySelector('.optionCContainer');
-    const optionDContainer = document.querySelector('.optionDContainer');
-
-    // Insert option A
-    const optionADiv = document.createElement('div');
-    optionADiv.className = "flex justify-center items-center h-0 absolute top-[31rem] lg:top-[45rem] xl:top-[33rem]";
-    optionADiv.innerHTML = `
+      // Insert option A
+      const optionADiv = document.createElement('div');
+      optionADiv.className = "flex justify-center items-center h-0 absolute top-[31rem] lg:top-[45rem] xl:top-[33rem]";
+      optionADiv.innerHTML = `
       <div class="relative w-[12rem] s:w-[50vw] md:w-[50vw] lg:w-[85vw] xl:w-[50vw] h-[80px] lg:h-[100px] xl:h-[100px] border-4 border-yellow-500 rounded-full shadow-lg bg-gradient-to-b from-purple-900 to-indigo-700">
           <div class="absolute inset-0 flex justify-center items-center rounded-full text-white lg:text-3xl font-bold font-sans" id="optionAcontainer">
               ${currentQuestion.options[0]} <!-- Option A text -->
           </div>
       </div>
   `;
-    optionAContainer.appendChild(optionADiv);
-    // Attach event listener to option A
-    optionADiv.addEventListener('click', handleOptionClick);
+      optionAContainer.appendChild(optionADiv);
+      // Attach event listener to option A
+      optionADiv.addEventListener('click', handleOptionClick);
 
-    // Insert option B
-    const optionBDiv = document.createElement('div');
-    optionBDiv.className = "optionBContainer";
-    optionBDiv.innerHTML = `
+      // Insert option B
+      const optionBDiv = document.createElement('div');
+      optionBDiv.className = "optionBContainer";
+      optionBDiv.innerHTML = `
       <div class="flex justify-center items-center h-0 absolute top-[31rem] lg:top-[45rem] xl:top-[33rem] left-[12rem] s:left-[50vw] md:left-[50vw] lg:left-[85%] xl:left-[50%]">
           <div class="relative w-[12rem] s:w-[50vw] md:w-[50vw] lg:w-[85vw] xl:w-[50vw] h-[80px] lg:h-[100px] xl:h-[100px] border-4 border-yellow-500 rounded-full shadow-lg bg-gradient-to-b from-purple-900 to-indigo-700">
               <div class="absolute inset-0 flex justify-center items-center rounded-full text-white lg:text-3xl font-bold font-roboto" id="optionBcontainer">
@@ -1199,15 +1300,15 @@
           </div>
       </div>
   `;
-    optionBContainer.appendChild(optionBDiv);
+      optionBContainer.appendChild(optionBDiv);
 
-    // Attach event listener to option B
-    optionBDiv.addEventListener('click', handleOptionClick);
+      // Attach event listener to option B
+      optionBDiv.addEventListener('click', handleOptionClick);
 
-    // Insert option C
-    const optionCDiv = document.createElement('div');
-    optionCDiv.className = "optionCContainer";
-    optionCDiv.innerHTML = `
+      // Insert option C
+      const optionCDiv = document.createElement('div');
+      optionCDiv.className = "optionCContainer";
+      optionCDiv.innerHTML = `
       <div class="flex justify-center items-center h-0 absolute top-[36.5rem] lg:top-[53rem] xl:top-[40rem]">
           <div class="relative w-[12rem] s:w-[50vw] md:w-[50vw] lg:w-[85vw] xl:w-[50vw] h-[80px] lg:h-[100px] xl:h-[100px] border-4 border-yellow-500 rounded-full shadow-lg bg-gradient-to-b from-purple-900 to-indigo-700">
               <div class="absolute inset-0 flex justify-center items-center rounded-full text-white lg:text-3xl font-bold" id="optionCcontainer">
@@ -1216,15 +1317,15 @@
           </div>
       </div>
   `;
-    optionCContainer.appendChild(optionCDiv);
+      optionCContainer.appendChild(optionCDiv);
 
-    // Attach event listener to option C
-    optionCDiv.addEventListener('click', handleOptionClick);
+      // Attach event listener to option C
+      optionCDiv.addEventListener('click', handleOptionClick);
 
-    // Insert option D
-    const optionDDiv = document.createElement('div');
-    optionDDiv.className = "optionDContainer";
-    optionDDiv.innerHTML = `
+      // Insert option D
+      const optionDDiv = document.createElement('div');
+      optionDDiv.className = "optionDContainer";
+      optionDDiv.innerHTML = `
       <div class="flex justify-center items-center h-0 absolute top-[36.5rem] lg:top-[53rem] xl:top-[40rem] left-[12rem] s:left-[50vw] md:left-[50vw] lg:left-[85%] xl:left-[50%]">
           <div class="relative w-[12rem] md:w-[50vw] s:w-[50vw]  lg:w-[85vw] xl:w-[50vw] h-[80px] lg:h-[100px] xl:h-[100px] border-4 border-yellow-500 rounded-full shadow-lg bg-gradient-to-b from-purple-900 to-indigo-700">
               <div class="absolute inset-0 flex justify-center items-center rounded-full text-white lg:text-3xl font-bold" id="optionDcontainer">
@@ -1233,457 +1334,521 @@
           </div>
       </div>
   `;
-    optionDContainer.appendChild(optionDDiv);
+      optionDContainer.appendChild(optionDDiv);
 
-    // Attach event listener to option D
-    optionDDiv.addEventListener('click', handleOptionClick);
+      // Attach event listener to option D
+      optionDDiv.addEventListener('click', handleOptionClick);
 
-    // Reset lifeline visibility
-    document.getElementById('lifelines').style.display = 'block';
-  }
-  // -------------------------------------------------------------------------------------------------------
-  // Function to show options
-  function showOptions() {
-    document.querySelector('.optionAContainer').classList.remove('hidden');
-    document.querySelector('.optionBContainer').classList.remove('hidden');
-    document.querySelector('.optionCContainer').classList.remove('hidden');
-    document.querySelector('.optionDContainer').classList.remove('hidden');
-  }
-
-  // Attach event listeners
-  document.getElementById('showOptionsButton').addEventListener('click',
-    function () {
-      startTimer();
-      document.getElementById('lifelinesHide').style.display = 'block';
-      // Stop all audio files for the respective question set
-      switch (currentQuestionSet) {
-        // case 1:
-        //   // stopNinthQuestionAudio();
-        //   break;
-        // case 2:
-        //   // stopEightQuestionAudio();
-        //   break;
-        case 3:
-          stopThirdQuestionAudio();
-          break;
-        case 4:
-          stopFourthQuestionAudio();
-          break;
-        case 5:
-          stopFifthQuestionAudio();
-          break;
-        case 6:
-          stopSixthQuestionAudio();
-          break;
-        case 7:
-          stopSeventhQuestionAudio();
-          break;
-        case 8: stopEightQuestionAudio();
-          break;
-        case 9: stopNinthQuestionAudio();
-          break;
-
-        default:
-          // Handle default case
-          break;
-      }
-      showOptions();
-      this.style.display = 'none';
+      // Reset lifeline visibility
+      document.getElementById('lifelines').style.display = 'block';
     }
-  );
-  document.querySelector('.optionAContainer').addEventListener('click', function () {
-    // Stop ticticAudio when the timer stops
-    ticticAudio.pause();
-    ticticAudio.currentTime = 0;
+    // -------------------------------------------------------------------------------------------------------
+    // Function to show options
+    function showOptions() {
+      document.querySelector('.optionAContainer').classList.remove('hidden');
+      document.querySelector('.optionBContainer').classList.remove('hidden');
+      document.querySelector('.optionCContainer').classList.remove('hidden');
+      document.querySelector('.optionDContainer').classList.remove('hidden');
+    }
 
-    handleOptionClick();
+    // Attach event listeners
+    document.getElementById('showOptionsButton').addEventListener('click', function () {
+  // Determine the time limit based on the current question set
+  let timeLimit;
+  switch (currentQuestionSet) {
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+      timeLimit = 45;
+      break;
+    default:
+      timeLimit = 30;
+      break;
   }
-  );
-  document.querySelector('.optionBContainer').addEventListener('click', function () {
-    // Stop ticticAudio when the timer stops
-    ticticAudio.pause();
-    ticticAudio.currentTime = 0;
 
-    handleOptionClick();
-  });
-  document.querySelector('.optionCContainer').addEventListener('click', function () {
-    // Stop ticticAudio when the timer stops
-    ticticAudio.pause();
-    ticticAudio.currentTime = 0;
+  startTimer(timeLimit);
+  document.getElementById('lifelinesHide').style.display = 'block';
 
-    handleOptionClick();
-  });
-  document.querySelector('.optionDContainer').addEventListener('click', function () {
-    // Stop ticticAudio when the timer stops
-    ticticAudio.pause();
-    ticticAudio.currentTime = 0;
+  // Stop all audio files for the respective question set
+  switch (currentQuestionSet) {
+    case 3:
+      stopThirdQuestionAudio();
+      break;
+    case 4:
+      stopFourthQuestionAudio();
+      break;
+    case 5:
+      stopFifthQuestionAudio();
+      break;
+    case 6:
+      stopSixthQuestionAudio();
+      break;
+    case 7:
+      stopSeventhQuestionAudio();
+      break;
+    case 8:
+      stopEightQuestionAudio();
+      break;
+    case 9:
+      stopNinthQuestionAudio();
+      break;
+    default:
+      // Handle default case
+      break;
+  }
+  showOptions();
+  this.style.display = 'none';
+});
 
-    handleOptionClick();
-  });
+    document.querySelector('.optionAContainer').addEventListener('click', function () {
+      // Stop ticticAudio when the timer stops
+      ticticAudio.pause();
+      ticticAudio.currentTime = 0;
 
-  // Load the first question when the page loads
-  document.addEventListener('DOMContentLoaded', loadNewQuestion);
-  // -----------------------------------------------------------------------------
-  // Array to map question number to element IDs
-  const questionIds = ['1k', '2k', '40k', '80k', '3l', '6l', '12l', '25l', '1c', '7c'];
+      handleOptionClick();
+    }
+    );
+    document.querySelector('.optionBContainer').addEventListener('click', function () {
+      // Stop ticticAudio when the timer stops
+      ticticAudio.pause();
+      ticticAudio.currentTime = 0;
 
-  // Current question index
-  let currentQuestionIndex = 0;
+      handleOptionClick();
+    });
+    document.querySelector('.optionCContainer').addEventListener('click', function () {
+      // Stop ticticAudio when the timer stops
+      ticticAudio.pause();
+      ticticAudio.currentTime = 0;
 
-  // Function to update the current question highlight
-  function updateCurrentQuestionHighlight() {
-    // Reset all backgrounds
-    questionIds.forEach(id => {
-      const element = document.getElementById(id);
-      if (element) {
-        element.classList.remove('bg-yellow-500', 'rounded-md');
-      }
+      handleOptionClick();
+    });
+    document.querySelector('.optionDContainer').addEventListener('click', function () {
+      // Stop ticticAudio when the timer stops
+      ticticAudio.pause();
+      ticticAudio.currentTime = 0;
+
+      handleOptionClick();
     });
 
-    // Highlight the current question
-    const currentQuestionId = questionIds[currentQuestionIndex];
-    const currentQuestionElement = document.getElementById(currentQuestionId);
-    if (currentQuestionElement) {
-      currentQuestionElement.classList.add('bg-yellow-500', 'rounded-md');
-    }
-  }
-  // Function to switch to the next set of questions
-  function switchToNextSet() {
-    currentQuestionNumber++;
-    console.log(currentQuestionNumber);
-    if (currentQuestionIndex < questionIds.length - 1) {
-      currentQuestionIndex++;
-    }
-    updateCurrentQuestionHighlight();
-    switch (currentQuestionSet) {
-      case 1:
-        stopFirstAnswerAudio();
-        break;
-      case 2:
-        stopSecondAnswerAudio();
-        startThirdQuestionAudio();
-        break;
-      case 3:
-        stopThirdAnswerAudio();
-        startFourthQuestionAudio();
-        break;
-      case 4:
-        stopFourthAnswerAudio();
-        startFifthQuestionAudio();
-        break;
-      case 5:
-        stopFifthAnswerAudio();
-        startSixthQuestionAudio();
-        break;
-      case 6:
-        stopSixthAnswerAudio();
-        startSeventhQuestionAudio();
-        break;
-      case 7:
-        stopSeventhAnswerAudio();
-        startEightQuestionAudio();
-        break;
-      case 8:
-        stopEightAnswerAudio();
-        startNinthQuestionAudio();
-        break;
-      case 9:
-        stopNinthAnswerAudio();
-        break;
-      // case 10:
-      //   stopTenthAnswerAudio();
-      //   break;
-      default:
-        break;
-    }
-    currentQuestionSet++;
+    // Load the first question when the page loads
+    document.addEventListener('DOMContentLoaded', loadNewQuestion);
+    // -----------------------------------------------------------------------------
+    // Array to map question number to element IDs
+    const questionIds = ['1k', '2k', '40k', '80k', '3l', '6l', '12l', '25l', '1c', '7c'];
+    // Array to map question sets
+    // const questionSets = [/* Add your question sets here */]; // they are already set
+    let currentQuestionIndex = 0;
+    let currentQuestionSet = 1;
+    let currentSetIndex = 0;
+    let currentQuestionNumber = 0;
 
-    if (currentSetIndex < questionSets.length - 1) {
-      currentSetIndex++;
+    // Function to update the current question highlight
+    function updateCurrentQuestionHighlight() {
+      // Reset all backgrounds
+      questionIds.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.classList.remove('bg-yellow-500', 'rounded-md');
+        }
+      });
+
+      // Highlight the current question
+      const currentQuestionId = questionIds[currentQuestionIndex];
+      const currentQuestionElement = document.getElementById(currentQuestionId);
+      if (currentQuestionElement) {
+        currentQuestionElement.classList.add('bg-yellow-500', 'rounded-md');
+      }
+    }
+
+    // Logic to set quitVariable based on highlighted element
+    function checkHighlightedQuestion() {
+      let quitVariable = 0;
+
+      questionIds.forEach((id, index) => {
+        const element = document.getElementById(id);
+        if (element && element.classList.contains('bg-yellow-500')) {
+          if (id === '1k') {
+            quitVariable = `1,000`;
+          } else if (id === '2k') {
+            quitVariable = "2,000";
+          }
+          else if (id === '40k') {
+            quitVariable = "40,000";
+          }
+          else if (id === '80k') {
+            quitVariable = "80,000";
+          }
+          else if (id === '3l') {
+            quitVariable = "3,00,000";
+          }
+          else if (id === '6l') {
+            quitVariable = "6,00,000";
+          }
+          else if (id === '12l') {
+            quitVariable = "12,00,000";
+          }
+          else if (id === '25l') {
+            quitVariable = "25,00,000";
+          }
+          else if (id === '1c') {
+            quitVariable = "1,00,00,000";
+          }
+          else if (id === '7c') {
+            quitVariable = "7,00,00,000";
+          }
+          // Add additional conditions as needed
+        }
+      });
+
+      console.log(quitVariable);
+    }
+
+    // Function to switch to the next set of questions
+    function switchToNextSet() {
+      currentQuestionNumber++;
+      console.log(currentQuestionNumber);
+      if (currentQuestionIndex < questionIds.length - 1) {
+        currentQuestionIndex++;
+      }
+      updateCurrentQuestionHighlight();
+      checkHighlightedQuestion(); // Call this to update quitVariable after highlighting the next question
+      switch (currentQuestionSet) {
+        case 1:
+          stopFirstAnswerAudio();
+          break;
+        case 2:
+          stopSecondAnswerAudio();
+          startThirdQuestionAudio();
+          break;
+        case 3:
+          stopThirdAnswerAudio();
+          startFourthQuestionAudio();
+          break;
+        case 4:
+          stopFourthAnswerAudio();
+          startFifthQuestionAudio();
+          break;
+        case 5:
+          stopFifthAnswerAudio();
+          startSixthQuestionAudio();
+          break;
+        case 6:
+          stopSixthAnswerAudio();
+          startSeventhQuestionAudio();
+          break;
+        case 7:
+          stopSeventhAnswerAudio();
+          startEightQuestionAudio();
+          break;
+        case 8:
+          stopEightAnswerAudio();
+          startNinthQuestionAudio();
+          break;
+        case 9:
+          stopNinthAnswerAudio();
+          break;
+        // case 10:
+        //   stopTenthAnswerAudio();
+        //   break;
+        default:
+          break;
+      }
+      currentQuestionSet++;
+
+      if (currentSetIndex < questionSets.length - 1) {
+        currentSetIndex++;
+        loadNewQuestion();
+      } else {
+        console.log("Naacho bisi 7 crore jeet gaye");
+      }
+    }
+
+    // Function to reload the page
+    function reloadPage() {
+      window.location.reload();
+    }
+
+    // Lifeline: 50-50
+    function useFiftyFifty() {
+      if (!usedFiftyFifty) {
+        console.log('50 50 lifeline is clicked');
+        // Select all option elements within the container
+        const optionsListItems = Array.from(document.querySelectorAll('#optionsContainer .option'));
+        const correctOption = currentQuestion.correctAnswer;
+
+        // Log to verify correctOption and optionsListItems
+        console.log('Correct Option:', correctOption);
+        console.log('Options List Items:', optionsListItems);
+
+        // Ensure there are options available
+        if (optionsListItems.length === 0) {
+          console.error('No options found in the options container.');
+          return;
+        }
+
+        let incorrectOptions = optionsListItems.filter(option => option.textContent.trim() !== correctOption.trim());
+
+        // Log to verify incorrectOptions
+        console.log('Incorrect Options:', incorrectOptions);
+
+        if (incorrectOptions.length < 2) {
+          console.error('Not enough incorrect options to hide.');
+          return;
+        }
+
+        // Randomly hide two incorrect options
+        let hiddenCount = 0;
+        while (hiddenCount < 2 && incorrectOptions.length > 0) {
+          const randomIndex = Math.floor(Math.random() * incorrectOptions.length);
+
+          // Log to verify randomIndex and the option to be hidden
+          console.log('Random Index:', randomIndex);
+          console.log('Option to Hide:', incorrectOptions[randomIndex]);
+
+          if (incorrectOptions[randomIndex] && incorrectOptions[randomIndex].style.display !== 'none') {
+            incorrectOptions[randomIndex].style.display = 'none';
+            hiddenCount++;
+            // Remove the hidden option from incorrectOptions to avoid hiding it again
+            incorrectOptions.splice(randomIndex, 1);
+          } else {
+            // If the selected option is already hidden, try another one
+            incorrectOptions = incorrectOptions.filter(option => option.style.display !== 'none');
+          }
+        }
+
+        usedFiftyFifty = true;
+        document.getElementById('fiftyFiftyButton').style.display = 'none';
+      }
+    }
+
+
+
+    // Lifeline: Flip-a-question
+    function useFlipQuestion() {
+      if (!usedFlipQuestion) {
+        loadNewQuestion();
+        usedFlipQuestion = true;
+        document.getElementById('flipQuestionButton').style.display = 'none';
+      }
+    }
+
+    // Initialize the quiz
+    let currentQuestion;
+    document.addEventListener('DOMContentLoaded', () => {
       loadNewQuestion();
-    } else {
-      // alert('You have completed all the question sets!');
-      console.log("Naacho bisi 7 crore jeet gaye");
+      document.getElementById('nextQuestionDiv').addEventListener('click', function () {
+        // currentQuestionNumber++;
+        // console.log(currentQuestionNumber);
+        handleNextQuestionClick();
+        switchToNextSet();
+        // handleNextQuestionClick();
+        document.getElementById('lifelinesHide').style.display = 'none';
+        document.getElementById('showOptionsButton').style.display = 'block';
+      }
+      );
+      document.getElementById('retryDiv').addEventListener('click', reloadPage);
+      document.getElementById('fiftyFiftyButton').addEventListener('click', useFiftyFifty);
+      document.getElementById('flipQuestionButton').addEventListener('click', function () {
+        console.log('flip a question lifeline par click hua hai');
+        useFlipQuestion();
+      });
+      document.getElementById('flipQuestionButtonKaSpanTag').addEventListener('click', function() {
+      useFlipQuestion();
+    });
+    });
+    //     // Function to handle clicking on the next question
+    function handleNextQuestionClick() {
+
+      // Check if it's the last question
+      if (currentQuestionNumber === totalQuestions) {
+        console.log('shayad ye faltu hai');
+        document.getElementById('mainDiv').classList.add('hidden');
+        document.getElementById("lastDiv").classList.remove("hidden");
+      }
     }
+    // -----------start timer function------------------
+    function startTimer(timeLeft) {
+  const timerDisplay = document.getElementById('timer');
+  const timesup = document.getElementById('timesup');
+  const ticticAudio = document.getElementById('ticticAudio');
+
+  // Play ticticAudio when the timer starts
+  ticticAudio.play();
+
+  // IDs of the elements to hide when the timer ends
+  const optionsToHide = ['optionAContainer', 'optionBContainer', 'optionCContainer', 'optionDContainer'];
+
+  // Display the initial time
+  timerDisplay.innerHTML = timeLeft;
+
+  // Clear any existing interval to avoid multiple intervals running simultaneously
+  if (window.timerInterval) {
+    clearInterval(window.timerInterval);
   }
-  // Initialize the highlight for the first question
-  updateCurrentQuestionHighlight();
 
-  // Function to reload the page
-  function reloadPage() {
-    window.location.reload();
-  }
+  // Update the timer every second
+  window.timerInterval = setInterval(() => {
+    // Reduce timeLeft by 1
+    timeLeft--;
 
-  // Lifeline: 50-50
-  function useFiftyFifty() {
-    if (!usedFiftyFifty) {
-      // Select all option elements within the container
-      const optionsListItems = Array.from(document.querySelectorAll('#optionsContainer .option'));
-      const correctOption = currentQuestion.correctAnswer;
+    // Display the updated time
+    timerDisplay.innerHTML = timeLeft;
 
-      // Log to verify correctOption and optionsListItems
-      console.log('Correct Option:', correctOption);
-      console.log('Options List Items:', optionsListItems);
+    // Check if timeLeft is 0, if so, stop the timer and show 'timesup' element
+    if (timeLeft <= 0) {
+      clearInterval(window.timerInterval);
+      timesup.style.display = 'block';
 
-      // Ensure there are options available
-      if (optionsListItems.length === 0) {
-        console.error('No options found in the options container.');
-        return;
+      // Hide the option elements
+      optionsToHide.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.style.display = 'none';
+        }
+      });
+      // Stop ticticAudio when the timer stops
+      ticticAudio.pause();
+      ticticAudio.currentTime = 0;
+    }
+  }, 1000);
+}
+    // ----------------------
+    document.getElementById('timesup').addEventListener('click', reloadPage);
+    // -------------------------------------
+    //----------------------------------Fireworks Logic
+    var c = document.getElementById("Canvas");
+    var ctx = c.getContext("2d");
+
+    var cwidth, cheight;
+    var shells = [];
+    var pass = [];
+
+    var colors = ['#FF5252', '#FF4081', '#E040FB', '#7C4DFF', '#536DFE', '#448AFF', '#40C4FF', '#18FFFF', '#64FFDA', '#69F0AE', '#B2FF59', '#EEFF41', '#FFFF00', '#FFD740', '#FFAB40', '#FF6E40'];
+
+    window.onresize = function () { reset(); }
+    reset();
+    function reset() {
+
+      cwidth = window.innerWidth;
+      cheight = window.innerHeight;
+      c.width = cwidth;
+      c.height = cheight;
+    }
+
+    function newShell() {
+
+      var left = (Math.random() > 0.5);
+      var shell = {};
+      shell.x = (1 * left);
+      shell.y = 1;
+      shell.xoff = (0.01 + Math.random() * 0.007) * (left ? 1 : -1);
+      shell.yoff = 0.01 + Math.random() * 0.007;
+      shell.size = Math.random() * 6 + 3;
+      shell.color = colors[Math.floor(Math.random() * colors.length)];
+
+      shells.push(shell);
+    }
+
+    function newPass(shell) {
+
+      var pasCount = Math.ceil(Math.pow(shell.size, 2) * Math.PI);
+
+      for (i = 0; i < pasCount; i++) {
+
+        var pas = {};
+        pas.x = shell.x * cwidth;
+        pas.y = shell.y * cheight;
+
+        var a = Math.random() * 4;
+        var s = Math.random() * 10;
+
+        pas.xoff = s * Math.sin((5 - a) * (Math.PI / 2));
+        pas.yoff = s * Math.sin(a * (Math.PI / 2));
+
+        pas.color = shell.color;
+        pas.size = Math.sqrt(shell.size);
+
+        if (pass.length < 1000) { pass.push(pas); }
       }
+    }
 
-      let incorrectOptions = optionsListItems.filter(option => option.textContent.trim() !== correctOption.trim());
+    var lastRun = 0;
+    Run();
+    function Run() {
 
-      // Log to verify incorrectOptions
-      console.log('Incorrect Options:', incorrectOptions);
+      var dt = 1;
+      if (lastRun != 0) { dt = Math.min(50, (performance.now() - lastRun)); }
+      lastRun = performance.now();
 
-      if (incorrectOptions.length < 2) {
-        console.error('Not enough incorrect options to hide.');
-        return;
-      }
+      //ctx.clearRect(0, 0, cwidth, cheight);
+      ctx.fillStyle = "rgba(0,0,0,0.25)";
+      ctx.fillRect(0, 0, cwidth, cheight);
 
-      // Randomly hide two incorrect options
-      let hiddenCount = 0;
-      while (hiddenCount < 2 && incorrectOptions.length > 0) {
-        const randomIndex = Math.floor(Math.random() * incorrectOptions.length);
+      if ((shells.length < 10) && (Math.random() > 0.96)) { newShell(); }
 
-        // Log to verify randomIndex and the option to be hidden
-        console.log('Random Index:', randomIndex);
-        console.log('Option to Hide:', incorrectOptions[randomIndex]);
+      for (let ix in shells) {
 
-        if (incorrectOptions[randomIndex] && incorrectOptions[randomIndex].style.display !== 'none') {
-          incorrectOptions[randomIndex].style.display = 'none';
-          hiddenCount++;
-          // Remove the hidden option from incorrectOptions to avoid hiding it again
-          incorrectOptions.splice(randomIndex, 1);
-        } else {
-          // If the selected option is already hidden, try another one
-          incorrectOptions = incorrectOptions.filter(option => option.style.display !== 'none');
+        var shell = shells[ix];
+
+        ctx.beginPath();
+        ctx.arc(shell.x * cwidth, shell.y * cheight, shell.size, 0, 2 * Math.PI);
+        ctx.fillStyle = shell.color;
+        ctx.fill();
+
+        shell.x -= shell.xoff;
+        shell.y -= shell.yoff;
+        shell.xoff -= (shell.xoff * dt * 0.001);
+        shell.yoff -= ((shell.yoff + 0.2) * dt * 0.00005);
+
+        if (shell.yoff < -0.005) {
+          newPass(shell);
+          shells.splice(ix, 1);
         }
       }
 
-      usedFiftyFifty = true;
-      document.getElementById('fiftyFiftyButton').style.display = 'none';
-    }
-  }
+      for (let ix in pass) {
 
+        var pas = pass[ix];
 
+        ctx.beginPath();
+        ctx.arc(pas.x, pas.y, pas.size, 0, 2 * Math.PI);
+        ctx.fillStyle = pas.color;
+        ctx.fill();
 
-  // Lifeline: Flip-a-question
-  function useFlipQuestion() {
-    if (!usedFlipQuestion) {
-      loadNewQuestion();
-      usedFlipQuestion = true;
-      document.getElementById('flipQuestionButton').style.display = 'none';
-    }
-  }
+        pas.x -= pas.xoff;
+        pas.y -= pas.yoff;
+        pas.xoff -= (pas.xoff * dt * 0.001);
+        pas.yoff -= ((pas.yoff + 5) * dt * 0.0005);
+        pas.size -= (dt * 0.002 * Math.random())
 
-  // Initialize the quiz
-  let currentQuestion;
-  document.addEventListener('DOMContentLoaded', () => {
-    loadNewQuestion();
-    document.getElementById('nextQuestionDiv').addEventListener('click', function () {
-      // currentQuestionNumber++;
-      // console.log(currentQuestionNumber);
-      handleNextQuestionClick();
-      switchToNextSet();
-      // handleNextQuestionClick();
-      document.getElementById('lifelinesHide').style.display = 'none';
-      document.getElementById('showOptionsButton').style.display = 'block';
-    }
-    );
-    document.getElementById('retryDiv').addEventListener('click', reloadPage);
-    document.getElementById('fiftyFiftyButton').addEventListener('click', useFiftyFifty);
-    document.getElementById('flipQuestionButton').addEventListener('click', useFlipQuestion);
-
-  });
-
-  //     // Function to handle clicking on the next question
-  function handleNextQuestionClick() {
-
-    // Check if it's the last question
-    if (currentQuestionNumber === totalQuestions) {
-      console.log('shayad ye faltu hai');
-      document.getElementById('mainDiv').classList.add('hidden');
-      document.getElementById("lastDiv").classList.remove("hidden");
-    }
-  }
-  // -----------start timer function------------------
-  function startTimer() {
-    let timeLeft = 30;
-    const timerDisplay = document.getElementById('timer');
-    const timesup = document.getElementById('timesup');
-    const ticticAudio = document.getElementById('ticticAudio');
-
-    // Play ticticAudio when the timer starts
-    ticticAudio.play();
-
-    // IDs of the elements to hide when the timer ends
-    const optionsToHide = ['optionAContainer', 'optionBContainer', 'optionCContainer', 'optionDContainer'];
-
-    // Display the initial time
-    timerDisplay.innerHTML = timeLeft;
-
-    // Clear any existing interval to avoid multiple intervals running simultaneously
-    if (window.timerInterval) {
-      clearInterval(window.timerInterval);
-    }
-
-    // Update the timer every second
-    window.timerInterval = setInterval(() => {
-      // Reduce timeLeft by 1
-      timeLeft--;
-
-      // Display the updated time
-      timerDisplay.innerHTML = timeLeft;
-
-      // Check if timeLeft is 0, if so, stop the timer and show 'timesup' element
-      if (timeLeft <= 0) {
-        clearInterval(window.timerInterval);
-        timesup.style.display = 'block';
-
-        // Hide the option elements
-        optionsToHide.forEach(id => {
-          const element = document.getElementById(id);
-          if (element) {
-            element.style.display = 'none';
-          }
-        });
-        // Stop ticticAudio when the timer stops
-        ticticAudio.pause();
-        ticticAudio.currentTime = 0;
+        if ((pas.y > cheight) || (pas.y < -50) || (pas.size <= 0)) {
+          pass.splice(ix, 1);
+        }
       }
-    }, 1000);
-  }
-  // ----------------------
-  document.getElementById('timesup').addEventListener('click', reloadPage);
-  // -------------------------------------
-  //----------------------------------Fireworks Logic
-  var c = document.getElementById("Canvas");
-  var ctx = c.getContext("2d");
-
-  var cwidth, cheight;
-  var shells = [];
-  var pass = [];
-
-  var colors = ['#FF5252', '#FF4081', '#E040FB', '#7C4DFF', '#536DFE', '#448AFF', '#40C4FF', '#18FFFF', '#64FFDA', '#69F0AE', '#B2FF59', '#EEFF41', '#FFFF00', '#FFD740', '#FFAB40', '#FF6E40'];
-
-  window.onresize = function () { reset(); }
-  reset();
-  function reset() {
-
-    cwidth = window.innerWidth;
-    cheight = window.innerHeight;
-    c.width = cwidth;
-    c.height = cheight;
-  }
-
-  function newShell() {
-
-    var left = (Math.random() > 0.5);
-    var shell = {};
-    shell.x = (1 * left);
-    shell.y = 1;
-    shell.xoff = (0.01 + Math.random() * 0.007) * (left ? 1 : -1);
-    shell.yoff = 0.01 + Math.random() * 0.007;
-    shell.size = Math.random() * 6 + 3;
-    shell.color = colors[Math.floor(Math.random() * colors.length)];
-
-    shells.push(shell);
-  }
-
-  function newPass(shell) {
-
-    var pasCount = Math.ceil(Math.pow(shell.size, 2) * Math.PI);
-
-    for (i = 0; i < pasCount; i++) {
-
-      var pas = {};
-      pas.x = shell.x * cwidth;
-      pas.y = shell.y * cheight;
-
-      var a = Math.random() * 4;
-      var s = Math.random() * 10;
-
-      pas.xoff = s * Math.sin((5 - a) * (Math.PI / 2));
-      pas.yoff = s * Math.sin(a * (Math.PI / 2));
-
-      pas.color = shell.color;
-      pas.size = Math.sqrt(shell.size);
-
-      if (pass.length < 1000) { pass.push(pas); }
+      requestAnimationFrame(Run);
     }
-  }
+    // -----------------------FIRST WALLPAPER LOGIC-----------------
+    document.getElementById('startGameBtn').addEventListener('click', function () {
+      startIntroSoundAudio();
+      this.style.display = 'none';
+      document.getElementById('skipIntroBtn').style.display = 'block';
+    });
+    document.getElementById('skipIntroBtn').addEventListener('click', function () {
+      stopIntroSoundAudio();
+      document.getElementById('firstDiv').classList.add('hidden');
+      document.getElementById('mainDiv').classList.remove('hidden');
+    });
+    document.getElementById('progress-audio').addEventListener('ended', function () {
+      // Automatically click the skipIntroBtn button
+      skipIntroBtn.click();
+    });
 
-  var lastRun = 0;
-  Run();
-  function Run() {
+    
+    // -------------------------------------------------------------------------------------------------------------------
 
-    var dt = 1;
-    if (lastRun != 0) { dt = Math.min(50, (performance.now() - lastRun)); }
-    lastRun = performance.now();
-
-    //ctx.clearRect(0, 0, cwidth, cheight);
-    ctx.fillStyle = "rgba(0,0,0,0.25)";
-    ctx.fillRect(0, 0, cwidth, cheight);
-
-    if ((shells.length < 10) && (Math.random() > 0.96)) { newShell(); }
-
-    for (let ix in shells) {
-
-      var shell = shells[ix];
-
-      ctx.beginPath();
-      ctx.arc(shell.x * cwidth, shell.y * cheight, shell.size, 0, 2 * Math.PI);
-      ctx.fillStyle = shell.color;
-      ctx.fill();
-
-      shell.x -= shell.xoff;
-      shell.y -= shell.yoff;
-      shell.xoff -= (shell.xoff * dt * 0.001);
-      shell.yoff -= ((shell.yoff + 0.2) * dt * 0.00005);
-
-      if (shell.yoff < -0.005) {
-        newPass(shell);
-        shells.splice(ix, 1);
-      }
-    }
-
-    for (let ix in pass) {
-
-      var pas = pass[ix];
-
-      ctx.beginPath();
-      ctx.arc(pas.x, pas.y, pas.size, 0, 2 * Math.PI);
-      ctx.fillStyle = pas.color;
-      ctx.fill();
-
-      pas.x -= pas.xoff;
-      pas.y -= pas.yoff;
-      pas.xoff -= (pas.xoff * dt * 0.001);
-      pas.yoff -= ((pas.yoff + 5) * dt * 0.0005);
-      pas.size -= (dt * 0.002 * Math.random())
-
-      if ((pas.y > cheight) || (pas.y < -50) || (pas.size <= 0)) {
-        pass.splice(ix, 1);
-      }
-    }
-    requestAnimationFrame(Run);
-  }
-  // -----------------------FIRST WALLPAPER LOGIC-----------------
-  document.getElementById('startGameBtn').addEventListener('click', function () {
-    startIntroSoundAudio();
-    this.style.display = 'none';
-    document.getElementById('skipIntroBtn').style.display = 'block';
-  });
-  document.getElementById('skipIntroBtn').addEventListener('click', function () {
-    stopIntroSoundAudio();
-    document.getElementById('firstDiv').classList.add('hidden');
-    document.getElementById('mainDiv').classList.remove('hidden');
-  });
-  document.getElementById('progress-audio').addEventListener('ended', function () {
-    // Automatically click the skipIntroBtn button
-    skipIntroBtn.click();
-  });
-</script>
+    
+  </script>
 </body>
+
 </html>
